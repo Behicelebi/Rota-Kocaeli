@@ -2,15 +2,18 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
     static AnaVeri anaVeri;
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
     public static void main(String[] args) {
         String jsonContent;
         try {
             jsonContent = new String(Files.readAllBytes(Paths.get("veriseti.json")));
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error reading file: veriseti.json", e);
             return;
         }
 
