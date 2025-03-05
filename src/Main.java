@@ -4,8 +4,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Main {
+    static AnaVeri anaVeri;
     public static void main(String[] args) {
-        String jsonContent = null;
+        String jsonContent;
         try {
             jsonContent = new String(Files.readAllBytes(Paths.get("veriseti.json")));
         } catch (IOException e) {
@@ -14,7 +15,9 @@ public class Main {
         }
 
         Gson gson = new Gson();
-        AnaVeri anaVeri = gson.fromJson(jsonContent, AnaVeri.class);
+        anaVeri = gson.fromJson(jsonContent, AnaVeri.class);
+
+        new Frame();
 
         System.out.println("Şehir: " + anaVeri.getCity());
         System.out.println("Taksi Açılış Ücreti: " + anaVeri.getTaxi().getOpeningFee());
