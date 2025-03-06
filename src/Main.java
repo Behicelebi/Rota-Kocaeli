@@ -25,9 +25,11 @@ public class Main {
 
         Gson gson = new Gson();
         anaVeri = gson.fromJson(jsonContent, AnaVeri.class);
+        for(Durak durak : anaVeri.getDuraklar()){
+            anaVeri.putDurakMap(durak);
+        }
 
-        rotaHesaplayici = new RotaHesaplayici();
-        System.out.println(RotaHesaplayici.calculateDistance(anaVeri.getDuraklar().get(0).getLat(),anaVeri.getDuraklar().get(0).getLon(),anaVeri.getDuraklar().get(1).getLat(),anaVeri.getDuraklar().get(1).getLon()));
+        //BU KISMA KADAR OLAN SATIRLAR JSONDAN VERİNİN OKUNMASI İŞLEMİNİ YAPIYOR
 
         Yolcular.add(new Ogrenci());
         Yolcular.add(new Genel());
@@ -36,12 +38,21 @@ public class Main {
         OdemeYontemleri.add(new KrediKarti());
         OdemeYontemleri.add(new Nakit());
 
+        //BU KISIMA KADAR OLAN SATIRLAR TERCİHLERİN EKLENMESİNİ İÇERİYOR
+
         new Frame();
+
+        //GÖRSELLEŞTİRME İÇİN GEREKLİ
 
         System.out.println("Şehir: " + anaVeri.getCity());
         System.out.println("Taksi Açılış Ücreti: " + anaVeri.getTaxi().getOpeningFee());
         System.out.println("Scotter Açılış Ücreti: " + anaVeri.getScotter().getOpeningFee());
         System.out.println("Martı Tag Açılış Ücreti: " + anaVeri.getMarti_tag().getOpeningFee());
-        System.out.println(anaVeri.getDuraklar().get(0).getId() + " Durağının bir sonraki durağı " + anaVeri.getDuraklar().get(0).getNextStops().get(0).getStopId());
+        System.out.println(anaVeri.getDurakMap().get("bus_otogar"));
+
     }
+    // En yakın durağı bulma fonksiyonu (YAPILDI)
+    // Uzaklık bulma fonksiyonu (iki koordinat arasında) (YAPILDI)
+    // Bütün olası yolları bulan fonksiyon
+    //
 }

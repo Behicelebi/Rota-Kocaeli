@@ -26,5 +26,6 @@ public class Menu extends JPanel{
         g.drawString("Taksi Açılış Ücreti: " + Main.anaVeri.getTaxi().getOpeningFee(),30,380);
         g.drawString("Scotter Açılış Ücreti: " + Main.anaVeri.getScotter().getOpeningFee(),30,410);
         g.drawString("Martı Tag Açılış Ücreti: " + Main.anaVeri.getMarti_tag().getOpeningFee(),30,440);
+        g.drawString(Main.anaVeri.getDuraklar().get(0).getId() + " Durağının bir sonraki durağı " + Main.anaVeri.getDuraklar().get(0).getNextStops().get(0).getStopId(), 30, 470);
     }
 }
