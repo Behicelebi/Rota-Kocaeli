@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,9 +15,10 @@ public class Panel extends JPanel implements ActionListener {
     int HEIGHT;
     public BufferedImage map_texture;
     JComboBox selectType, selectBuy, baslangicDurak, bitisDurak;
-    JButton baslangicButton, bitisButton;
+    JButton baslangicButton, bitisButton, calculateButton;
     double baslangic_lat=0, baslangic_lon=0, bitis_lat=0, bitis_lon=0;
     private static final Logger logger = Logger.getLogger(Panel.class.getName());
+    double minlat=40.75,maxlat=40.83,minlon=29.90,maxlon=29.97;
 
     Panel(int WIDTH, int HEIGHT){
         this.WIDTH = WIDTH;
@@ -71,6 +73,21 @@ public class Panel extends JPanel implements ActionListener {
         bitisButton.setFocusable(false);
         bitisButton.addActionListener(this);
         this.add(bitisButton);
+
+        calculateButton = new JButton("Hesapla");
+        calculateButton.setBounds(20,200,100,20);
+        calculateButton.setFocusable(false);
+        calculateButton.addActionListener(this);
+        this.add(calculateButton);
+    }
+
+    public int mapToX(double longitude) {
+        return (int) (1200.0 * (longitude - minlon) / (maxlon - minlon));
+    }
+
+    public int mapToY(double latitude) {
+        // Latitude is inverted because y increases downwards on the screen
+        return (int) (800.0 * (maxlat - latitude) / (maxlat - minlat));
     }
 
     public void paintComponent(Graphics g){
@@ -81,6 +98,30 @@ public class Panel extends JPanel implements ActionListener {
     public void draw(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         //g.drawImage(map_texture,0,0,this);
+        g.setColor(Color.blue);
+        g.setFont(new Font("Copperplate Gothic Bold",Font.PLAIN,8));
+        for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
+            if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getType(), "bus")){g.setColor(Color.red);}
+            else{g.setColor(Color.blue);}
+            g.fillRect(mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),10,10);
+            g.drawString(Main.anaVeri.getDuraklar().get(i).getName(),mapToX(Main.anaVeri.getDuraklar().get(i).getLon()) - 20,mapToY(Main.anaVeri.getDuraklar().get(i).getLat()) + 20);
+            g.setColor(Color.gray);
+            for (int j = 0; j < Main.anaVeri.getDuraklar().get(i).getNextStops().size(); j++) {
+                for (int k = 0; k < Main.anaVeri.getDuraklar().size(); k++) {
+                    if(Objects.equals(Main.anaVeri.getDuraklar().get(k).getId(), Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId())){
+                        g.drawLine(mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDuraklar().get(k).getLon()),mapToY(Main.anaVeri.getDuraklar().get(k).getLat()));
+                    }
+                }
+            }
+            g.setColor(Color.white);
+            if(Main.anaVeri.getDuraklar().get(i).getTransfer()!=null){
+                for (int j = 0; j < Main.anaVeri.getDuraklar().size(); j++) {
+                    if(Objects.equals(Main.anaVeri.getDuraklar().get(j).getId(), Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId())){
+                        g.drawLine(mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDuraklar().get(j).getLon()),mapToY(Main.anaVeri.getDuraklar().get(j).getLat()));
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -103,6 +144,8 @@ public class Panel extends JPanel implements ActionListener {
         } else if (e.getSource() == bitisDurak) {
             bitis_lat = Main.anaVeri.getDuraklar().get(bitisDurak.getSelectedIndex()).getLat();
             bitis_lon = Main.anaVeri.getDuraklar().get(bitisDurak.getSelectedIndex()).getLon();
+        } else if (e.getSource() == calculateButton) {
+            RotaHesaplayici.calculateShortestPath(baslangic_lat,baslangic_lon,bitis_lat,bitis_lon);
         }
     }
 }

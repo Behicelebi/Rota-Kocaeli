@@ -1,4 +1,5 @@
 public class RotaHesaplayici {
+
     public static int findNearestStop(double lat, double lon) {
         int enKucukIndex = 0;
         int index = 0;
@@ -10,6 +11,7 @@ public class RotaHesaplayici {
         }
         return enKucukIndex;
     }
+
     public static double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         final int R = 6371;
 
@@ -25,5 +27,11 @@ public class RotaHesaplayici {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return R*c;
+    }
+
+    public static void calculateShortestPath(double lat1, double lon1, double lat2, double lon2){
+        calculateDistance(lat1,lon1,lat2,lon2);
+        findNearestStop(lat1,lon1);
+        findNearestStop(lat2,lon2);
     }
 }

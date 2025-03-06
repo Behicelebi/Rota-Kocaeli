@@ -9,9 +9,8 @@ import java.util.logging.Logger;
 public class Main {
 
     static AnaVeri anaVeri;
-    static RotaHesaplayici rotaHesaplayici;
-    static ArrayList<Yolcu> Yolcular = new ArrayList<Yolcu>();
-    static ArrayList<Odeme> OdemeYontemleri = new ArrayList<Odeme>();
+    static ArrayList<Yolcu> Yolcular = new ArrayList<>();
+    static ArrayList<Odeme> OdemeYontemleri = new ArrayList<>();
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
