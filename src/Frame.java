@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Frame extends JFrame implements ActionListener {
-    int WIDTH = 500;
+    int WIDTH = 1000;
     int HEIGHT = 800;
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

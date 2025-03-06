@@ -4,4 +4,9 @@ public class Yasli implements Yolcu{
     public double getDiscountPrice() {
         return 50.0;
     }
+
+    @Override
+    public String getClassName() {
+        return "Yaşlı";
+    }
 }

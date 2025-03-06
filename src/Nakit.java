@@ -3,4 +3,9 @@ public class Nakit implements Odeme{
     public double getDiscountPrice() {
         return 0.0;
     }
+
+    @Override
+    public String getClassName() {
+        return "Nakit";
+    }
 }

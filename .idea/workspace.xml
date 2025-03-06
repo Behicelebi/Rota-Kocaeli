@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43021054-8692-4100-93f4-eb31ec23d398" name="Changes" comment="Visualization start">
+    <list default="true" id="43021054-8692-4100-93f4-eb31ec23d398" name="Changes" comment="placeholder texture">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Genel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Genel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kentkart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kentkart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/KrediKarti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KrediKarti.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Nakit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nakit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Odeme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Odeme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ogrenci.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ogrenci.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Yasli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Yasli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Yolcu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Yolcu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,12 +102,21 @@
       <option name="project" value="LOCAL" />
       <updated>1741180040108</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="placeholder texture">
+      <option name="closed" value="true" />
+      <created>1741183689595</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741183689595</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="a" />
     <MESSAGE value="Visualization start" />
-    <option name="LAST_COMMIT_MESSAGE" value="Visualization start" />
+    <MESSAGE value="placeholder texture" />
+    <option name="LAST_COMMIT_MESSAGE" value="placeholder texture" />
   </component>
 </project>

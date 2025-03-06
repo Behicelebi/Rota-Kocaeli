@@ -4,4 +4,9 @@ public class Genel implements Yolcu{
     public double getDiscountPrice() {
         return 0.0;
     }
+
+    @Override
+    public String getClassName() {
+        return "Genel";
+    }
 }

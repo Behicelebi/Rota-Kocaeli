@@ -2,12 +2,18 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
+
     static AnaVeri anaVeri;
+    static RotaHesaplayici rotaHesaplayici;
+    static ArrayList<Yolcu> Yolcular = new ArrayList<Yolcu>();
+    static ArrayList<Odeme> OdemeYontemleri = new ArrayList<Odeme>();
     private static final Logger logger = Logger.getLogger(Main.class.getName());
+
     public static void main(String[] args) {
         String jsonContent;
         try {
@@ -19,6 +25,16 @@ public class Main {
 
         Gson gson = new Gson();
         anaVeri = gson.fromJson(jsonContent, AnaVeri.class);
+
+        rotaHesaplayici = new RotaHesaplayici();
+        System.out.println(RotaHesaplayici.calculateDistance(anaVeri.getDuraklar().get(0).getLat(),anaVeri.getDuraklar().get(0).getLon(),anaVeri.getDuraklar().get(1).getLat(),anaVeri.getDuraklar().get(1).getLon()));
+
+        Yolcular.add(new Ogrenci());
+        Yolcular.add(new Genel());
+        Yolcular.add(new Yasli());
+        OdemeYontemleri.add(new Kentkart());
+        OdemeYontemleri.add(new KrediKarti());
+        OdemeYontemleri.add(new Nakit());
 
         new Frame();
 
