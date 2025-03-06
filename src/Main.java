@@ -43,15 +43,17 @@ public class Main {
 
         //GÖRSELLEŞTİRME İÇİN GEREKLİ
 
+        System.out.println(RotaHesaplayici.findPaths("bus_otogar", "bus_umuttepe"));
         System.out.println("Şehir: " + anaVeri.getCity());
         System.out.println("Taksi Açılış Ücreti: " + anaVeri.getTaxi().getOpeningFee());
         System.out.println("Scotter Açılış Ücreti: " + anaVeri.getScotter().getOpeningFee());
         System.out.println("Martı Tag Açılış Ücreti: " + anaVeri.getMarti_tag().getOpeningFee());
-        System.out.println(anaVeri.getDurakMap().get("bus_otogar"));
+        System.out.println(anaVeri.getDurakMap().get("bus_otogar").getName());
 
     }
     // En yakın durağı bulma fonksiyonu (YAPILDI)
     // Uzaklık bulma fonksiyonu (iki koordinat arasında) (YAPILDI)
-    // Bütün olası yolları bulan fonksiyon
+    // Bütün olası yolları bulan fonksiyon (YAPILDI)
+    // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi
     //
 }
