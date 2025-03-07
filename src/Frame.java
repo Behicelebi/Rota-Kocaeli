@@ -24,7 +24,7 @@ public class Frame extends JFrame implements ActionListener {
         this.setSize(WIDTH,HEIGHT);
         this.add(menu);
         button = new JButton("START");
-        button.setBounds(220,200,80,30);
+        button.setBounds(560,200,80,30);
         button.setFocusable(false);
         button.addActionListener(this);
         menu.add(button);

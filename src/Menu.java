@@ -20,7 +20,7 @@ public class Menu extends JPanel{
     public void draw(Graphics g){
         g.setColor(Color.white);
         g.setFont(new Font("Arial",Font.PLAIN,40));
-        g.drawString("EKOMOBİL 2",130,50);
+        g.drawString("EKOMOBİL 2",490,50);
         g.setFont(new Font("Arial",Font.PLAIN,15));
         g.drawString(Main.anaVeri.getCity(),30,350);
         g.drawString("Taksi Açılış Ücreti: " + Main.anaVeri.getTaxi().getOpeningFee(),30,380);
