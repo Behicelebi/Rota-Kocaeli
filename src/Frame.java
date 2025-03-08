@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class Frame extends JFrame implements ActionListener {
+public class Frame extends JFrame{
     int WIDTH = 1200;
     int HEIGHT = 800;
 
@@ -11,10 +9,7 @@ public class Frame extends JFrame implements ActionListener {
     int screenWidth = (int)screenSize.getWidth()/2-(WIDTH/2);
     int screenHeight = (int)screenSize.getHeight()/2-(HEIGHT/2);
 
-    Panel gamePanel = new Panel(WIDTH,HEIGHT);
-    Menu menu = new Menu(WIDTH,HEIGHT);
-
-    JButton button;
+    Panel panel = new Panel(WIDTH,HEIGHT);
 
     Frame(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,25 +17,8 @@ public class Frame extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setLocation(screenWidth,screenHeight);
         this.setSize(WIDTH,HEIGHT);
-        this.add(menu);
-        button = new JButton("START");
-        button.setBounds(560,200,80,30);
-        button.setFocusable(false);
-        button.addActionListener(this);
-        menu.add(button);
+        this.add(panel);
         this.pack();
         this.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Frame frame = this;
-        if(e.getSource()==button){
-            frame.getContentPane().remove(menu);
-            frame.getContentPane().add(gamePanel);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-            gamePanel.requestFocus();
-        }
     }
 }
