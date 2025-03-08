@@ -43,7 +43,6 @@ public class Main {
 
         //GÖRSELLEŞTİRME İÇİN GEREKLİ
 
-        System.out.println(RotaHesaplayici.findPaths("bus_otogar", "bus_umuttepe"));
         System.out.println("Şehir: " + anaVeri.getCity());
         System.out.println("Taksi Açılış Ücreti: " + anaVeri.getTaxi().getOpeningFee());
         System.out.println("Scotter Açılış Ücreti: " + anaVeri.getScotter().getOpeningFee());

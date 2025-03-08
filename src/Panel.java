@@ -201,7 +201,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             repaint();
         } else if (e.getSource() == calculateButton) {
             if(baslangic_lat==bitis_lat && baslangic_lon==bitis_lon){JOptionPane.showMessageDialog(null,"Aynı yeri seçmeyiniz lütfen");}
-            else{RotaHesaplayici.calculateShortestPath(baslangic_lat,baslangic_lon,bitis_lat,bitis_lon);}
+            else{System.out.println(RotaHesaplayici.findPaths(baslangic_lat,baslangic_lon,bitis_lat,bitis_lon));}
         }
     }
 
@@ -211,8 +211,8 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         if(baslangicSeciliyor){
             BaslangicX = e.getX();
             BaslangicY = e.getY();
-            baslangic_lat = maxlat - ((maxlat - minlat) * (double)SecilenX / 800.0);
-            baslangic_lon = minlon + ((maxlon - minlon) * (double)SecilenY / 1200.0);
+            baslangic_lon = minlon + ((maxlon - minlon) * (double)SecilenX / 1200.0);
+            baslangic_lat = maxlat - ((maxlat - minlat) * (double)SecilenY / 800.0);
             System.out.println(baslangic_lat);
             System.out.println(baslangic_lon);
             baslangicButton.setText("Manuel Sec");
@@ -222,8 +222,8 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         else if (bitisSeciliyor) {
             BitisX = e.getX();
             BitisY = e.getY();
-            bitis_lat = maxlat - ((maxlat - minlat) * (double)SecilenX / 800.0);
-            bitis_lon = minlon + ((maxlon - minlon) * (double)SecilenY / 1200.0);
+            bitis_lon = minlon + ((maxlon - minlon) * (double)SecilenX / 1200.0);
+            bitis_lat = maxlat - ((maxlat - minlat) * (double)SecilenY / 800.0);
             System.out.println(bitis_lat);
             System.out.println(bitis_lon);
             bitisButton.setText("Manuel Sec");
