@@ -48,44 +48,44 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.Yolcular.size(); i++){selectType.addItem(Main.Yolcular.get(i).getClassName());}
         selectType.addActionListener(this);
         selectType.setFocusable(false);
-        selectType.setBounds(20,40,150,20);
+        selectType.setBounds(20,190,150,20);
         this.add(selectType);
 
         selectBuy = new JComboBox();
         for (int i = 0; i< Main.OdemeYontemleri.size(); i++){selectBuy.addItem(Main.OdemeYontemleri.get(i).getClassName());}
         selectBuy.addActionListener(this);
         selectBuy.setFocusable(false);
-        selectBuy.setBounds(20,90,150,20);
+        selectBuy.setBounds(20,240,150,20);
         this.add(selectBuy);
 
         baslangicDurak = new JComboBox();
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){baslangicDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         baslangicDurak.addActionListener(this);
         baslangicDurak.setFocusable(false);
-        baslangicDurak.setBounds(20,180,150,20);
+        baslangicDurak.setBounds(20,330,150,20);
         this.add(baslangicDurak);
 
         bitisDurak = new JComboBox();
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){bitisDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         bitisDurak.addActionListener(this);
         bitisDurak.setFocusable(false);
-        bitisDurak.setBounds(20,300,150,20);
+        bitisDurak.setBounds(20,450,150,20);
         this.add(bitisDurak);
 
         baslangicButton = new JButton("Manuel Sec");
-        baslangicButton.setBounds(20,140,150,20);
+        baslangicButton.setBounds(20,290,150,20);
         baslangicButton.setFocusable(false);
         baslangicButton.addActionListener(this);
         this.add(baslangicButton);
 
         bitisButton = new JButton("Manuel Sec");
-        bitisButton.setBounds(20,260,150,20);
+        bitisButton.setBounds(20,410,150,20);
         bitisButton.setFocusable(false);
         bitisButton.addActionListener(this);
         this.add(bitisButton);
 
         calculateButton = new JButton("Hesapla");
-        calculateButton.setBounds(20,360,150,20);
+        calculateButton.setBounds(20,510,150,20);
         calculateButton.setFocusable(false);
         calculateButton.addActionListener(this);
         this.add(calculateButton);
@@ -161,20 +161,22 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         g.setColor(new Color(128,128,128,150));
         g.fillRect(0,0,200,HEIGHT);
         g.setColor(Color.white);
+        g.setFont(new Font("Arial",Font.PLAIN,20));
+        g.drawString("EKOMOBİL 2", 30,150);
         g.setFont(new Font("Arial",Font.PLAIN,13));
-        g.drawString("Yolcu tipi seçiniz",10,30);
-        g.drawString("Ödeme tipi seçiniz",10,80);
-        g.drawString("Başlangıç noktası seçiniz",10,130);
-        g.drawString("Bitiş noktası seçiniz",10,250);
+        g.drawString("Yolcu tipi seçiniz",10,180);
+        g.drawString("Ödeme tipi seçiniz",10,230);
+        g.drawString("Başlangıç noktası seçiniz",10,280);
+        g.drawString("Bitiş noktası seçiniz",10,400);
         g.setFont(new Font("Arial",Font.PLAIN,10));
-        g.drawString("Durak seç",20,175);
-        g.drawString("Seçilen:",20,210);
-        g.drawString("Lat: "+baslangic_lat,20,220);
-        g.drawString("Lon: "+baslangic_lon,20,230);
-        g.drawString("Durak seç",20,295);
-        g.drawString("Seçilen:",20,330);
-        g.drawString("Lat: "+bitis_lat,20,340);
-        g.drawString("Lon: "+bitis_lon,20,350);
+        g.drawString("Durak seç",20,325);
+        g.drawString("Seçilen:",20,360);
+        g.drawString("Lat: "+baslangic_lat,20,370);
+        g.drawString("Lon: "+baslangic_lon,20,380);
+        g.drawString("Durak seç",20,445);
+        g.drawString("Seçilen:",20,480);
+        g.drawString("Lat: "+bitis_lat,20,490);
+        g.drawString("Lon: "+bitis_lon,20,500);
     }
 
     @Override
