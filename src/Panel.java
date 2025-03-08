@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.Line2D;
+import java.awt.geom.Path2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -94,13 +96,37 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
     }
 
     public int mapToY(double latitude) {
-        // Latitude is inverted because y increases downwards on the screen
         return (int) (800.0 * (maxlat - latitude) / (maxlat - minlat));
     }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         draw(g);
+    }
+
+    private void drawLineWithArrow(Graphics2D g2d, int x1, int y1, int x2, int y2) {
+        g2d.draw(new Line2D.Double(x1, y1, x2, y2));
+
+        double midX = (x1 + x2) / 2.0;
+        double midY = (y1 + y2) / 2.0;
+
+        int arrowLength = 10;
+        int arrowWidth = 5;
+
+        double angle = Math.atan2(y2 - y1, x2 - x1);
+
+        double x1_arrow = midX - arrowLength * Math.cos(angle - Math.atan2(arrowWidth, arrowLength));
+        double y1_arrow = midY - arrowLength * Math.sin(angle - Math.atan2(arrowWidth, arrowLength));
+        double x2_arrow = midX - arrowLength * Math.cos(angle + Math.atan2(arrowWidth, arrowLength));
+        double y2_arrow = midY - arrowLength * Math.sin(angle + Math.atan2(arrowWidth, arrowLength));
+
+        Path2D.Double arrowHead = new Path2D.Double();
+        arrowHead.moveTo(midX, midY);
+        arrowHead.lineTo(x1_arrow, y1_arrow);
+        arrowHead.lineTo(x2_arrow, y2_arrow);
+        arrowHead.closePath();
+
+        g2d.fill(arrowHead);
     }
 
     public void draw(Graphics g){
@@ -111,19 +137,11 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
             g.setColor(Color.gray);
             for (int j = 0; j < Main.anaVeri.getDuraklar().get(i).getNextStops().size(); j++) {
-                for (int k = 0; k < Main.anaVeri.getDuraklar().size(); k++) {
-                    if(Objects.equals(Main.anaVeri.getDuraklar().get(k).getId(), Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId())){
-                        g.drawLine(mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDuraklar().get(k).getLon()),mapToY(Main.anaVeri.getDuraklar().get(k).getLat()));
-                    }
-                }
+                drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId()).getLat()));
             }
-            g.setColor(Color.white);
             if(Main.anaVeri.getDuraklar().get(i).getTransfer()!=null){
-                for (int j = 0; j < Main.anaVeri.getDuraklar().size(); j++) {
-                    if(Objects.equals(Main.anaVeri.getDuraklar().get(j).getId(), Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId())){
-                        g.drawLine(mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDuraklar().get(j).getLon()),mapToY(Main.anaVeri.getDuraklar().get(j).getLat()));
-                    }
-                }
+                g.setColor(Color.white);
+                drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLat()));
             }
         }
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
@@ -168,15 +186,25 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             System.out.println(selectBuy.getSelectedIndex());
             System.out.println(Main.OdemeYontemleri.get(selectBuy.getSelectedIndex()).getDiscountPrice());
         } else if (e.getSource() == baslangicButton) {
-            //baslangic_lat = Double.parseDouble(JOptionPane.showInputDialog("Enter Latitude"));
-            //baslangic_lon = Double.parseDouble(JOptionPane.showInputDialog("Enter Longitude"));
             baslangicButton.setText("Seciliyor...");
             baslangicSeciliyor = true;
+            selectType.setEnabled(false);
+            selectBuy.setEnabled(false);
+            baslangicButton.setEnabled(false);
+            bitisButton.setEnabled(false);
+            baslangicDurak.setEnabled(false);
+            bitisDurak.setEnabled(false);
+            calculateButton.setEnabled(false);
         } else if (e.getSource() == bitisButton) {
-            //bitis_lat = Double.parseDouble(JOptionPane.showInputDialog("Enter Latitude"));
-            //bitis_lon = Double.parseDouble(JOptionPane.showInputDialog("Enter Longitude"));
             bitisButton.setText("Seciliyor...");
             bitisSeciliyor = true;
+            selectType.setEnabled(false);
+            selectBuy.setEnabled(false);
+            baslangicButton.setEnabled(false);
+            bitisButton.setEnabled(false);
+            baslangicDurak.setEnabled(false);
+            bitisDurak.setEnabled(false);
+            calculateButton.setEnabled(false);
         } else if (e.getSource() == baslangicDurak) {
             for (int i = 0; i < Main.anaVeri.getDuraklar().size(); i++) {
                 if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getName(), baslangicDurak.getSelectedItem())){
@@ -209,25 +237,39 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
     public void mouseClicked(MouseEvent e) {
         int SecilenX=e.getX(), SecilenY=e.getY();
         if(baslangicSeciliyor){
-            BaslangicX = e.getX();
-            BaslangicY = e.getY();
+            BaslangicX = SecilenX;
+            BaslangicY = SecilenY;
             baslangic_lon = minlon + ((maxlon - minlon) * (double)SecilenX / 1200.0);
             baslangic_lat = maxlat - ((maxlat - minlat) * (double)SecilenY / 800.0);
             System.out.println(baslangic_lat);
             System.out.println(baslangic_lon);
             baslangicButton.setText("Manuel Sec");
             baslangicSeciliyor = false;
+            selectType.setEnabled(true);
+            selectBuy.setEnabled(true);
+            baslangicButton.setEnabled(true);
+            bitisButton.setEnabled(true);
+            baslangicDurak.setEnabled(true);
+            bitisDurak.setEnabled(true);
+            calculateButton.setEnabled(true);
             repaint();
         }
         else if (bitisSeciliyor) {
-            BitisX = e.getX();
-            BitisY = e.getY();
+            BitisX = SecilenX;
+            BitisY = SecilenY;
             bitis_lon = minlon + ((maxlon - minlon) * (double)SecilenX / 1200.0);
             bitis_lat = maxlat - ((maxlat - minlat) * (double)SecilenY / 800.0);
             System.out.println(bitis_lat);
             System.out.println(bitis_lon);
             bitisButton.setText("Manuel Sec");
             bitisSeciliyor = false;
+            selectType.setEnabled(true);
+            selectBuy.setEnabled(true);
+            baslangicButton.setEnabled(true);
+            bitisButton.setEnabled(true);
+            baslangicDurak.setEnabled(true);
+            bitisDurak.setEnabled(true);
+            calculateButton.setEnabled(true);
             repaint();
         }
     }
