@@ -30,41 +30,12 @@ public class RotaHesaplayici {
         return R*c;
     }
 
-    public static void calculateShortestPath(double lat1, double lon1, double lat2, double lon2) {
-        calculateDistance(lat1,lon1,lat2,lon2);
-        findNearestStop(lat1,lon1);
-        findNearestStop(lat2,lon2);
-    }
-
-    private static int isItStop(double lat, double lon) {
-        int index = 0;
-        for(Durak durak : Main.anaVeri.getDuraklar()) {
-            if(durak.getLat() == lat && durak.getLon() == lon) {
-                return index;
-            }
-            index++;
-        }
-        return -1;
-    }
-
     public static List<List<String>> findPaths(double lat1, double lon1, double lat2, double lon2) {
         List<List<String>> paths = new ArrayList<>();
         Set<String> visited = new HashSet<>();
         List<String> currentPath = new ArrayList<>();
-        String startId, endId;
-
-        if(isItStop(lat1, lon1) != -1){
-            startId = Main.anaVeri.getDuraklar().get(isItStop(lat1, lon1)).getId();
-        } else {
-            startId = Main.anaVeri.getDuraklar().get(findNearestStop(lat1, lon1)).getId();
-        }
-
-        if(isItStop(lat2, lon2) != -1){
-            endId = Main.anaVeri.getDuraklar().get(isItStop(lat2, lon2)).getId();
-        } else {
-            endId = Main.anaVeri.getDuraklar().get(findNearestStop(lat2, lon2)).getId();
-        }
-
+        String startId = Main.anaVeri.getDuraklar().get(findNearestStop(lat1, lon1)).getId();
+        String endId = Main.anaVeri.getDuraklar().get(findNearestStop(lat2, lon2)).getId();
         currentPath.add(startId);
         dfs(startId, endId, visited, currentPath, paths);
         return paths;
@@ -102,4 +73,3 @@ public class RotaHesaplayici {
         visited.remove(currentId);
     }
 }
-
