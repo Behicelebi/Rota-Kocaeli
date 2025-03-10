@@ -50,7 +50,10 @@ public class Main {
         System.out.println("Taksi Açılış Ücreti: " + anaVeri.getTaxi().getOpeningFee());
         System.out.println("Scotter Açılış Ücreti: " + anaVeri.getScotter().getOpeningFee());
         System.out.println("Martı Tag Açılış Ücreti: " + anaVeri.getMarti_tag().getOpeningFee());
+        System.out.println("Taksinin bir kilometreyi gitmesi için geçen dakika: " + anaVeri.getTaxi().getTimePerKm());
         System.out.println(anaVeri.getDurakMap().get("bus_otogar").getName());
+
+        //DEBUG BÖLÜMÜ
 
     }
     // En yakın durağı bulma fonksiyonu (YAPILDI)

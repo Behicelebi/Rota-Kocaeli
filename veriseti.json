@@ -2,23 +2,26 @@
   "city": "Izmit",
   "taxi": {
     "openingFee": 10.0,
-    "costPerKm": 4.0
+    "costPerKm": 4.0,
+    "timePerKm": 1.0
   },
   "scotter": {
-    "openingFee": 15.0,
-    "costPerKm": 1.0
+    "openingFee": 5.0,
+    "costPerKm": 1.5,
+    "timePerKm": 3.0
   },
   "marti_tag": {
     "openingFee": 5,
-    "costPerKm": 3.0
+    "costPerKm": 3.0,
+    "timePerKm": 1.5
   },
   "duraklar": [
     {
       "id": "bus_otogar",
       "name": "Otogar (Bus)",
       "type": "bus",
-      "lat": 40.78259,
-      "lon": 29.94628,
+      "lat": 40.78620,
+      "lon": 29.93733,
       "sonDurak": false,
       "nextStops": [
         {
@@ -30,6 +33,7 @@
       ],
       "transfer": {
         "transferStopId": "tram_otogar",
+        "transferMesafe": 0.4,
         "transferSure": 2,
         "transferUcret": 0.5
       }
@@ -38,8 +42,8 @@
       "id": "bus_sekapark",
       "name": "Sekapark (Bus)",
       "type": "bus",
-      "lat": 40.76520,
-      "lon": 29.96190,
+      "lat": 40.77520,
+      "lon": 29.94000,
       "sonDurak": false,
       "nextStops": [
         {
@@ -63,6 +67,7 @@
       ],
       "transfer": {
         "transferStopId": "tram_sekapark",
+        "transferMesafe": 0.7,
         "transferSure": 3,
         "transferUcret": 0.0
       }
@@ -71,8 +76,8 @@
       "id": "bus_yahyakaptan",
       "name": "Yahya Kaptan (Bus)",
       "type": "bus",
-      "lat": 40.770965,
-      "lon": 29.959499,
+      "lat": 40.781000,
+      "lon": 29.961420,
       "sonDurak": false,
       "nextStops": [
         {
@@ -84,6 +89,7 @@
       ],
       "transfer": {
         "transferStopId": "tram_yahyakaptan",
+        "transferMesafe": 0.8,
         "transferSure": 2,
         "transferUcret": 0.0
       }
@@ -103,8 +109,8 @@
       "id": "bus_symbolavm",
       "name": "Symbol AVM (Bus)",
       "type": "bus",
-      "lat": 40.77788,
-      "lon": 29.94991,
+      "lat": 40.76920,
+      "lon": 29.94970,
       "sonDurak": true,
       "nextStops": [],
       "transfer": null
@@ -124,8 +130,8 @@
       "id": "tram_otogar",
       "name": "Otogar (Tram)",
       "type": "tram",
-      "lat": 40.78245,
-      "lon": 29.94610,
+      "lat": 40.78710,
+      "lon": 29.94479,
       "sonDurak": false,
       "nextStops": [
         {
@@ -137,6 +143,7 @@
       ],
       "transfer": {
         "transferStopId": "bus_otogar",
+        "transferMesafe": 0.4,
         "transferSure": 2,
         "transferUcret": 0.5
       }
@@ -158,6 +165,7 @@
       ],
       "transfer": {
         "transferStopId": "bus_yahyakaptan",
+        "transferMesafe": 0.8,
         "transferSure": 2,
         "transferUcret": 0.0
       }
@@ -167,7 +175,7 @@
       "name": "Sekapark (Tram)",
       "type": "tram",
       "lat": 40.76200,
-      "lon": 29.96550,
+      "lon": 29.94550,
       "sonDurak": false,
       "nextStops": [
         {
@@ -179,6 +187,7 @@
       ],
       "transfer": {
         "transferStopId": "bus_sekapark",
+        "transferMesafe": 0.7,
         "transferSure": 3,
         "transferUcret": 0.0
       }
@@ -188,11 +197,12 @@
       "name": "Halkevi (Tram)",
       "type": "tram",
       "lat": 40.76350,
-      "lon": 29.93870,
+      "lon": 29.92300,
       "sonDurak": true,
       "nextStops": [],
       "transfer": {
         "transferStopId": "bus_sekapark",
+        "transferMesafe": 1.2,
         "transferSure": 5,
         "transferUcret": 0.5
       }

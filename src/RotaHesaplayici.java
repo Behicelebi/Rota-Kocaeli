@@ -30,6 +30,15 @@ public class RotaHesaplayici {
         return R*c;
     }
 
+    public static List<String> calculatePathDetails(double lat1, double lon1, double lat2, double lon2) {
+        List<String> pathDetails = new ArrayList<>();
+        List<List<String>> paths = findPaths(lat1, lon1, lat2, lon2);
+
+
+        return pathDetails;
+    }
+
+
     public static List<List<String>> findPaths(double lat1, double lon1, double lat2, double lon2) {
         List<List<String>> paths = new ArrayList<>();
         Set<String> visited = new HashSet<>();
