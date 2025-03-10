@@ -134,6 +134,10 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         //g.drawImage(map_texture,0,0,this);
         g.setFont(new Font("Copperplate Gothic Bold",Font.PLAIN,8));
         g.setColor(Color.blue);
+        //Set  anti-alias
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        // Set anti-alias for text
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
             g.setColor(Color.gray);
             for (int j = 0; j < Main.anaVeri.getDuraklar().get(i).getNextStops().size(); j++) {
@@ -146,37 +150,37 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         }
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
             if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getType(), "bus")){
-                g.setColor(Color.red);
-                g.drawImage(bus_durak_texture,mapToX(Main.anaVeri.getDuraklar().get(i).getLon())-5,mapToY(Main.anaVeri.getDuraklar().get(i).getLat())-5,this);
+                g2d.setColor(Color.red);
+                g2d.drawImage(bus_durak_texture,mapToX(Main.anaVeri.getDuraklar().get(i).getLon())-5,mapToY(Main.anaVeri.getDuraklar().get(i).getLat())-5,this);
             }
             else if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getType(), "tram")){
-                g.setColor(Color.blue);
-                g.drawImage(tram_durak_texture,mapToX(Main.anaVeri.getDuraklar().get(i).getLon())-5,mapToY(Main.anaVeri.getDuraklar().get(i).getLat())-5,this);
+                g2d.setColor(Color.blue);
+                g2d.drawImage(tram_durak_texture,mapToX(Main.anaVeri.getDuraklar().get(i).getLon())-5,mapToY(Main.anaVeri.getDuraklar().get(i).getLat())-5,this);
             }
 
-            g.drawString(Main.anaVeri.getDuraklar().get(i).getName(),mapToX(Main.anaVeri.getDuraklar().get(i).getLon()) - 20,mapToY(Main.anaVeri.getDuraklar().get(i).getLat()) + 20);
+            g2d.drawString(Main.anaVeri.getDuraklar().get(i).getName(),mapToX(Main.anaVeri.getDuraklar().get(i).getLon()) - 20,mapToY(Main.anaVeri.getDuraklar().get(i).getLat()) + 20);
         }
-        g.drawImage(startingLocation,BaslangicX-6,BaslangicY-6,this);
-        g.drawImage(finalLocation,BitisX-6,BitisY-15,this);
-        g.setColor(new Color(128,128,128,150));
-        g.fillRect(0,0,200,HEIGHT);
-        g.setColor(Color.white);
-        g.setFont(new Font("Arial",Font.PLAIN,20));
-        g.drawString("EKOMOBİL 2", 30,150);
-        g.setFont(new Font("Arial",Font.PLAIN,13));
-        g.drawString("Yolcu tipi seçiniz",10,180);
-        g.drawString("Ödeme tipi seçiniz",10,230);
-        g.drawString("Başlangıç noktası seçiniz",10,280);
-        g.drawString("Bitiş noktası seçiniz",10,400);
-        g.setFont(new Font("Arial",Font.PLAIN,10));
-        g.drawString("Durak seç",20,325);
-        g.drawString("Seçilen:",20,360);
-        g.drawString("Lat: "+baslangic_lat,20,370);
-        g.drawString("Lon: "+baslangic_lon,20,380);
-        g.drawString("Durak seç",20,445);
-        g.drawString("Seçilen:",20,480);
-        g.drawString("Lat: "+bitis_lat,20,490);
-        g.drawString("Lon: "+bitis_lon,20,500);
+        g2d.drawImage(startingLocation,BaslangicX-6,BaslangicY-6,this);
+        g2d.drawImage(finalLocation,BitisX-6,BitisY-15,this);
+        g2d.setColor(new Color(128,128,128,150));
+        g2d.fillRect(0,0,200,HEIGHT);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial",Font.PLAIN,20));
+        g2d.drawString("EKOMOBİL 2", 30,150);
+        g2d.setFont(new Font("Arial",Font.PLAIN,13));
+        g2d.drawString("Yolcu tipi seçiniz",10,180);
+        g2d.drawString("Ödeme tipi seçiniz",10,230);
+        g2d.drawString("Başlangıç noktası seçiniz",10,280);
+        g2d.drawString("Bitiş noktası seçiniz",10,400);
+        g2d.setFont(new Font("Arial",Font.PLAIN,10));
+        g2d.drawString("Durak seç",20,325);
+        g2d.drawString("Seçilen:",20,360);
+        g2d.drawString("Lat: "+baslangic_lat,20,370);
+        g2d.drawString("Lon: "+baslangic_lon,20,380);
+        g2d.drawString("Durak seç",20,445);
+        g2d.drawString("Seçilen:",20,480);
+        g2d.drawString("Lat: "+bitis_lat,20,490);
+        g2d.drawString("Lon: "+bitis_lon,20,500);
     }
 
     @Override
