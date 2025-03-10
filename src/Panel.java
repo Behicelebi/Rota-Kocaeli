@@ -45,47 +45,54 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         }
 
         selectType = new JComboBox();
+        selectType.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.Yolcular.size(); i++){selectType.addItem(Main.Yolcular.get(i).getClassName());}
         selectType.addActionListener(this);
         selectType.setFocusable(false);
-        selectType.setBounds(20,190,150,20);
+        selectType.setBounds(20,190,150,23);
         this.add(selectType);
 
         selectBuy = new JComboBox();
+        selectBuy.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.OdemeYontemleri.size(); i++){selectBuy.addItem(Main.OdemeYontemleri.get(i).getClassName());}
         selectBuy.addActionListener(this);
         selectBuy.setFocusable(false);
-        selectBuy.setBounds(20,240,150,20);
+        selectBuy.setBounds(20,240,150,23);
         this.add(selectBuy);
 
         baslangicDurak = new JComboBox();
+        baslangicDurak.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){baslangicDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         baslangicDurak.addActionListener(this);
         baslangicDurak.setFocusable(false);
-        baslangicDurak.setBounds(20,330,150,20);
+        baslangicDurak.setBounds(20,330,150,23);
         this.add(baslangicDurak);
 
         bitisDurak = new JComboBox();
+        bitisDurak.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){bitisDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         bitisDurak.addActionListener(this);
         bitisDurak.setFocusable(false);
-        bitisDurak.setBounds(20,450,150,20);
+        bitisDurak.setBounds(20,450,150,23);
         this.add(bitisDurak);
 
         baslangicButton = new JButton("Manuel Sec");
-        baslangicButton.setBounds(20,290,150,20);
+        baslangicButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
+        baslangicButton.setBounds(20,290,150,23);
         baslangicButton.setFocusable(false);
         baslangicButton.addActionListener(this);
         this.add(baslangicButton);
 
         bitisButton = new JButton("Manuel Sec");
-        bitisButton.setBounds(20,410,150,20);
+        bitisButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
+        bitisButton.setBounds(20,410,150,23);
         bitisButton.setFocusable(false);
         bitisButton.addActionListener(this);
         this.add(bitisButton);
 
         calculateButton = new JButton("Hesapla");
-        calculateButton.setBounds(20,510,150,20);
+        calculateButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
+        calculateButton.setBounds(20,510,150,23);
         calculateButton.setFocusable(false);
         calculateButton.addActionListener(this);
         this.add(calculateButton);
@@ -131,20 +138,20 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
 
     public void draw(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        //g.drawImage(map_texture,0,0,this);
-        g.setFont(new Font("Copperplate Gothic Bold",Font.PLAIN,8));
+        g.drawImage(map_texture,0,0,this);
+        g.setFont(new Font("Copperplate Gothic Bold",Font.PLAIN,11));
         g.setColor(Color.blue);
         //Set  anti-alias
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         // Set anti-alias for text
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
-            g.setColor(Color.gray);
+            g.setColor(Color.green);
             for (int j = 0; j < Main.anaVeri.getDuraklar().get(i).getNextStops().size(); j++) {
                 drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId()).getLat()));
             }
             if(Main.anaVeri.getDuraklar().get(i).getTransfer()!=null){
-                g.setColor(Color.white);
+                g.setColor(Color.orange);
                 drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLat()));
             }
         }
@@ -158,21 +165,21 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
                 g2d.drawImage(tram_durak_texture,mapToX(Main.anaVeri.getDuraklar().get(i).getLon())-5,mapToY(Main.anaVeri.getDuraklar().get(i).getLat())-5,this);
             }
 
-            g2d.drawString(Main.anaVeri.getDuraklar().get(i).getName(),mapToX(Main.anaVeri.getDuraklar().get(i).getLon()) - 20,mapToY(Main.anaVeri.getDuraklar().get(i).getLat()) + 20);
+            g2d.drawString(Main.anaVeri.getDuraklar().get(i).getName(),mapToX(Main.anaVeri.getDuraklar().get(i).getLon()) - 40,mapToY(Main.anaVeri.getDuraklar().get(i).getLat()) + 20);
         }
         g2d.drawImage(startingLocation,BaslangicX-6,BaslangicY-6,this);
         g2d.drawImage(finalLocation,BitisX-6,BitisY-15,this);
         g2d.setColor(new Color(128,128,128,150));
         g2d.fillRect(0,0,200,HEIGHT);
         g2d.setColor(Color.white);
-        g2d.setFont(new Font("Arial",Font.PLAIN,20));
-        g2d.drawString("EKOMOBİL 2", 30,150);
-        g2d.setFont(new Font("Arial",Font.PLAIN,13));
+        g2d.setFont(new Font("Copperplate Gothic Bold",Font.PLAIN,25));
+        g2d.drawString("EKOMOBIL 2", 12,150);
+        g2d.setFont(new Font("Consolas",Font.PLAIN,13));
         g2d.drawString("Yolcu tipi seçiniz",10,180);
         g2d.drawString("Ödeme tipi seçiniz",10,230);
         g2d.drawString("Başlangıç noktası seçiniz",10,280);
         g2d.drawString("Bitiş noktası seçiniz",10,400);
-        g2d.setFont(new Font("Arial",Font.PLAIN,10));
+        g2d.setFont(new Font("Consolas",Font.PLAIN,12));
         g2d.drawString("Durak seç",20,325);
         g2d.drawString("Seçilen:",20,360);
         g2d.drawString("Lat: "+baslangic_lat,20,370);
