@@ -42,8 +42,8 @@
       "id": "bus_sekapark",
       "name": "Sekapark (Bus)",
       "type": "bus",
-      "lat": 40.77520,
-      "lon": 29.94000,
+      "lat": 40.76850,
+      "lon": 29.92164,
       "sonDurak": false,
       "nextStops": [
         {
@@ -76,8 +76,8 @@
       "id": "bus_yahyakaptan",
       "name": "Yahya Kaptan (Bus)",
       "type": "bus",
-      "lat": 40.781000,
-      "lon": 29.961420,
+      "lat": 40.77510,
+      "lon": 29.95600,
       "sonDurak": false,
       "nextStops": [
         {
@@ -98,8 +98,8 @@
       "id": "bus_umuttepe",
       "name": "Umuttepe (Bus)",
       "type": "bus",
-      "lat": 40.82103,
-      "lon": 29.91843,
+      "lat": 40.82479,
+      "lon": 29.93056,
       "sonDurak": true,
       "nextStops": [],
       "transfer": null
@@ -109,8 +109,8 @@
       "id": "bus_symbolavm",
       "name": "Symbol AVM (Bus)",
       "type": "bus",
-      "lat": 40.76920,
-      "lon": 29.94970,
+      "lat": 40.76090,
+      "lon": 29.95529,
       "sonDurak": true,
       "nextStops": [],
       "transfer": null
@@ -119,8 +119,8 @@
       "id": "bus_41burda",
       "name": "41 Burda AVM (Bus)",
       "type": "bus",
-      "lat": 40.77731,
-      "lon": 29.92512,
+      "lat": 40.75850,
+      "lon": 29.94118,
       "sonDurak": true,
       "nextStops": [],
       "transfer": null
@@ -152,8 +152,8 @@
       "id": "tram_yahyakaptan",
       "name": "Yahya Kaptan (Tram)",
       "type": "tram",
-      "lat": 40.77160,
-      "lon": 29.96010,
+      "lat": 40.76950,
+      "lon": 29.94993,
       "sonDurak": false,
       "nextStops": [
         {
@@ -174,8 +174,8 @@
       "id": "tram_sekapark",
       "name": "Sekapark (Tram)",
       "type": "tram",
-      "lat": 40.76200,
-      "lon": 29.94550,
+      "lat": 40.76310,
+      "lon": 29.92502,
       "sonDurak": false,
       "nextStops": [
         {
@@ -196,8 +196,8 @@
       "id": "tram_halkevi",
       "name": "Halkevi (Tram)",
       "type": "tram",
-      "lat": 40.76350,
-      "lon": 29.92300,
+      "lat": 40.76420,
+      "lon": 29.91493,
       "sonDurak": true,
       "nextStops": [],
       "transfer": {
