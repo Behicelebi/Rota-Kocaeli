@@ -11,6 +11,7 @@ public class Main {
     static AnaVeri anaVeri;
     static ArrayList<Yolcu> Yolcular = new ArrayList<>();
     static ArrayList<Odeme> OdemeYontemleri = new ArrayList<>();
+    static ArrayList<TopluTasima> TopluTasimaYontemleri = new ArrayList<>();
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
@@ -30,6 +31,8 @@ public class Main {
 
         //BU KISMA KADAR OLAN SATIRLAR JSONDAN VERİNİN OKUNMASI İŞLEMİNİ YAPIYOR
 
+        TopluTasimaYontemleri.add(new Bus());
+        TopluTasimaYontemleri.add(new Tram());
         Yolcular.add(new Ogrenci());
         Yolcular.add(new Genel());
         Yolcular.add(new Yasli());
@@ -53,6 +56,7 @@ public class Main {
     // En yakın durağı bulma fonksiyonu (YAPILDI)
     // Uzaklık bulma fonksiyonu (iki koordinat arasında) (YAPILDI)
     // Bütün olası yolları bulan fonksiyon (YAPILDI)
+    // Oranların düzeltilmesi
     // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi
     //
 }
