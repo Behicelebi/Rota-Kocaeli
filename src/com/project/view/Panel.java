@@ -165,11 +165,11 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             }
         }
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
-            if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getType(), "bus")){
+            if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getVehicle().getType(), "bus")){
                 g2d.setColor(Color.red);
                 g2d.drawImage(bus_durak_texture,mapToX(Main.anaVeri.getDuraklar().get(i).getLon())-5,mapToY(Main.anaVeri.getDuraklar().get(i).getLat())-5,this);
             }
-            else if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getType(), "tram")){
+            else if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getVehicle().getType(), "tram")){
                 g2d.setColor(Color.yellow);
                 g2d.drawImage(tram_durak_texture,mapToX(Main.anaVeri.getDuraklar().get(i).getLon())-5,mapToY(Main.anaVeri.getDuraklar().get(i).getLat())-5,this);
             }

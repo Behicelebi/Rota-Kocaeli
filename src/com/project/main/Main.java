@@ -75,11 +75,12 @@ public class Main {
         }
 
         try (ScanResult scanResult = new ClassGraph().enableAllInfo().acceptPackages("com.project.transportation").scan()) {
-            ClassInfoList topluTasimaClasses = scanResult.getClassesWithAnnotation(TopluTasima.class.getName());
+            ClassInfoList topluTasimaClasses = scanResult.getSubclasses(TopluTasima.class.getName());
             for(ClassInfo classInfo : topluTasimaClasses){
                 try {
                     if (!classInfo.isAbstract()) {
                         TopluTasima topluTasima = (TopluTasima) classInfo.loadClass().getDeclaredConstructor().newInstance();
+                        System.out.println(classInfo.getSimpleName());
                         TopluTasimaYontemleri.add(topluTasima);
                     }
                 } catch (Exception e) {
@@ -101,6 +102,7 @@ public class Main {
         System.out.println("Martı Tag Açılış Ücreti: " + anaVeri.getMarti_tag().getOpeningFee());
         System.out.println("Taksinin bir kilometreyi gitmesi için geçen dakika: " + anaVeri.getTaxi().getTimePerKm());
         System.out.println("Yahyakaptan bustan trama mesafe " + anaVeri.getDuraklar().get(2).getTransfer().getTransferMesafe());
+        System.out.println("Bu ne ?" + anaVeri.getDuraklar().get(2).getVehicle().getType());
         System.out.println(anaVeri.getDurakMap().get("bus_otogar").getName());
     }
 
