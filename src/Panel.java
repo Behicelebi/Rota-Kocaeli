@@ -25,6 +25,11 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
     private static final Logger logger = Logger.getLogger(Panel.class.getName());
     double minlat=40.75,maxlat=40.83,minlon=29.90,maxlon=29.97;
 
+    //SOLID PRENSIPLERINDEN AÇIK/KAPALI PRENSİBİNİN DOĞRU UYGULANMASI İÇİN BURASI ÖNEMLİ
+
+    DistanceCalculator haversineCalculator = new HaversineDistance();
+    RotaHesaplayici rotaHesaplayici = new RotaHesaplayici(haversineCalculator);
+
     Panel(int WIDTH, int HEIGHT){
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
@@ -49,7 +54,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.Yolcular.size(); i++){selectType.addItem(Main.Yolcular.get(i).getClassName());}
         selectType.addActionListener(this);
         selectType.setFocusable(false);
-        selectType.setBounds(20,190,150,23);
+        selectType.setBounds(20,194,160,23);
         this.add(selectType);
 
         selectBuy = new JComboBox();
@@ -57,7 +62,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.OdemeYontemleri.size(); i++){selectBuy.addItem(Main.OdemeYontemleri.get(i).getClassName());}
         selectBuy.addActionListener(this);
         selectBuy.setFocusable(false);
-        selectBuy.setBounds(20,240,150,23);
+        selectBuy.setBounds(20,257,160,23);
         this.add(selectBuy);
 
         baslangicDurak = new JComboBox();
@@ -65,7 +70,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){baslangicDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         baslangicDurak.addActionListener(this);
         baslangicDurak.setFocusable(false);
-        baslangicDurak.setBounds(20,330,150,23);
+        baslangicDurak.setBounds(20,377,160,23);
         this.add(baslangicDurak);
 
         bitisDurak = new JComboBox();
@@ -73,26 +78,26 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){bitisDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         bitisDurak.addActionListener(this);
         bitisDurak.setFocusable(false);
-        bitisDurak.setBounds(20,450,150,23);
+        bitisDurak.setBounds(20,567,160,23);
         this.add(bitisDurak);
 
-        baslangicButton = new JButton("Manuel Sec");
+        baslangicButton = new JButton("Manuel Seç");
         baslangicButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        baslangicButton.setBounds(20,290,150,23);
+        baslangicButton.setBounds(20,320,160,23);
         baslangicButton.setFocusable(false);
         baslangicButton.addActionListener(this);
         this.add(baslangicButton);
 
-        bitisButton = new JButton("Manuel Sec");
+        bitisButton = new JButton("Manuel Seç");
         bitisButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        bitisButton.setBounds(20,410,150,23);
+        bitisButton.setBounds(20,510,160,23);
         bitisButton.setFocusable(false);
         bitisButton.addActionListener(this);
         this.add(bitisButton);
 
         calculateButton = new JButton("Hesapla");
         calculateButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        calculateButton.setBounds(20,510,150,23);
+        calculateButton.setBounds(20,700,160,23);
         calculateButton.setFocusable(false);
         calculateButton.addActionListener(this);
         this.add(calculateButton);
@@ -173,21 +178,20 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         g2d.fillRect(0,0,200,HEIGHT);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Copperplate Gothic Bold",Font.PLAIN,25));
-        g2d.drawString("EKOMOBIL 2", 12,150);
+        g2d.drawString("E-KOMOBIL 2", 10,110);
         g2d.setFont(new Font("Consolas",Font.PLAIN,13));
         g2d.drawString("Yolcu tipi seçiniz",10,180);
-        g2d.drawString("Ödeme tipi seçiniz",10,230);
-        g2d.drawString("Başlangıç noktası seçiniz",10,280);
-        g2d.drawString("Bitiş noktası seçiniz",10,400);
-        g2d.setFont(new Font("Consolas",Font.PLAIN,12));
-        g2d.drawString("Durak seç",20,325);
-        g2d.drawString("Seçilen:",20,360);
-        g2d.drawString("Lat: "+baslangic_lat,20,370);
-        g2d.drawString("Lon: "+baslangic_lon,20,380);
-        g2d.drawString("Durak seç",20,445);
-        g2d.drawString("Seçilen:",20,480);
-        g2d.drawString("Lat: "+bitis_lat,20,490);
-        g2d.drawString("Lon: "+bitis_lon,20,500);
+        g2d.drawString("Ödeme tipi seçiniz",10,243);
+        g2d.drawString("Başlangıç noktası seçiniz",10,306);
+        g2d.drawString("Bitiş noktası seçiniz",10,496);
+        g2d.drawString("Durak seç",20,363);
+        g2d.drawString("Seçilen:",20,420);
+        g2d.drawString("Lat: "+baslangic_lat,20,440);
+        g2d.drawString("Lon: "+baslangic_lon,20,460);
+        g2d.drawString("Durak seç",20,553);
+        g2d.drawString("Seçilen:",20,610);
+        g2d.drawString("Lat: "+bitis_lat,20,630);
+        g2d.drawString("Lon: "+bitis_lon,20,650);
     }
 
     @Override
@@ -242,7 +246,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             repaint();
         } else if (e.getSource() == calculateButton) {
             if(baslangic_lat==bitis_lat && baslangic_lon==bitis_lon){JOptionPane.showMessageDialog(null,"Aynı yeri seçmeyiniz lütfen");}
-            else{System.out.println(RotaHesaplayici.findPaths(baslangic_lat,baslangic_lon,bitis_lat,bitis_lon));}
+            else{System.out.println(rotaHesaplayici.findPaths(baslangic_lat,baslangic_lon,bitis_lat,bitis_lon));} //Buraya Döneceğiz
         }
     }
 

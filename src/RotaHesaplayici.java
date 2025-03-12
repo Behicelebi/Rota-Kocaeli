@@ -4,12 +4,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class RotaHesaplayici {
+    private DistanceCalculator distanceCalculator;
 
-    public static int findNearestStop(double lat, double lon) {
+    public RotaHesaplayici(DistanceCalculator distanceCalculator) {
+        this.distanceCalculator = distanceCalculator;
+    }
+
+    public int findNearestStop(double lat, double lon) {
         int enKucukIndex = 0;
         int index = 0;
         for(Durak durak : Main.anaVeri.getDuraklar()) {
-            if(calculateDistance(lat, lon, durak.getLat(), durak.getLon()) < calculateDistance(lat, lon, Main.anaVeri.getDuraklar().get(enKucukIndex).getLat(), Main.anaVeri.getDuraklar().get(enKucukIndex).getLon())) {
+            if(distanceCalculator.calculateDistance(lat, lon, durak.getLat(), durak.getLon()) <
+                    distanceCalculator.calculateDistance(lat, lon, Main.anaVeri.getDuraklar().get(enKucukIndex).getLat(),
+                            Main.anaVeri.getDuraklar().get(enKucukIndex).getLon())) {
                 enKucukIndex = index;
             }
             index++;
@@ -17,29 +24,13 @@ public class RotaHesaplayici {
         return enKucukIndex;
     }
 
-    public static double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
-        final int R = 6371;
-
-        double phi1 = Math.toRadians(lat1);
-        double phi2 = Math.toRadians(lat2);
-        double deltaPhi = Math.toRadians(lat2 - lat1);
-        double deltaLambda = Math.toRadians(lon2 - lon1);
-        double a = Math.pow(Math.sin(deltaPhi / 2), 2) + Math.cos(phi1) * Math.cos(phi2) * Math.pow(Math.sin(deltaLambda / 2), 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        return R*c;
-    }
-
-    public static List<String> calculatePathDetails(double lat1, double lon1, double lat2, double lon2) {
+    public List<String> calculatePathDetails(double lat1, double lon1, double lat2, double lon2) {
         List<String> pathDetails = new ArrayList<>();
         List<List<String>> paths = findPaths(lat1, lon1, lat2, lon2);
-
-
         return pathDetails;
     }
 
-
-    public static List<List<String>> findPaths(double lat1, double lon1, double lat2, double lon2) {
+    public List<List<String>> findPaths(double lat1, double lon1, double lat2, double lon2) {
         List<List<String>> paths = new ArrayList<>();
         Set<String> visited = new HashSet<>();
         List<String> currentPath = new ArrayList<>();
@@ -80,5 +71,9 @@ public class RotaHesaplayici {
         }
 
         visited.remove(currentId);
+    }
+
+    public void setDistanceCalculator(DistanceCalculator distanceCalculator) {
+        this.distanceCalculator = distanceCalculator;
     }
 }

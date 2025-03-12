@@ -7,7 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-
     static AnaVeri anaVeri;
     static ArrayList<Yolcu> Yolcular = new ArrayList<>();
     static ArrayList<Odeme> OdemeYontemleri = new ArrayList<>();
@@ -15,6 +14,8 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
+        //BU KISIMDAKİ SATIRLAR JSONDAN VERİNİN OKUNMASI İŞLEMİNİ YAPIYOR
+
         String jsonContent;
         try {
             jsonContent = new String(Files.readAllBytes(Paths.get("veriseti.json")));
@@ -29,7 +30,7 @@ public class Main {
             anaVeri.putDurakMap(durak);
         }
 
-        //BU KISMA KADAR OLAN SATIRLAR JSONDAN VERİNİN OKUNMASI İŞLEMİNİ YAPIYOR
+        //BU KISIMDAKİ SATIRLAR TERCİHLERİN EKLENMESİNİ İÇERİYOR
 
         TopluTasimaYontemleri.add(new Bus());
         TopluTasimaYontemleri.add(new Tram());
@@ -40,11 +41,11 @@ public class Main {
         OdemeYontemleri.add(new KrediKarti());
         OdemeYontemleri.add(new Nakit());
 
-        //BU KISIMA KADAR OLAN SATIRLAR TERCİHLERİN EKLENMESİNİ İÇERİYOR
+        //GÖRSELLEŞTİRME İÇİN GEREKLİ
 
         new Frame();
 
-        //GÖRSELLEŞTİRME İÇİN GEREKLİ
+        //DEBUG BÖLÜMÜ
 
         System.out.println("Şehir: " + anaVeri.getCity());
         System.out.println("Taksi Açılış Ücreti: " + anaVeri.getTaxi().getOpeningFee());
@@ -53,14 +54,17 @@ public class Main {
         System.out.println("Taksinin bir kilometreyi gitmesi için geçen dakika: " + anaVeri.getTaxi().getTimePerKm());
         System.out.println("Yahyakaptan bustan trama mesafe " + anaVeri.getDuraklar().get(2).getTransfer().getTransferMesafe());
         System.out.println(anaVeri.getDurakMap().get("bus_otogar").getName());
-
-        //DEBUG BÖLÜMÜ
-
     }
+
+    // NOTLAR (DAHA ÇOK TO-DO LIST)
+
     // En yakın durağı bulma fonksiyonu (YAPILDI)
     // Uzaklık bulma fonksiyonu (iki koordinat arasında) (YAPILDI)
     // Bütün olası yolları bulan fonksiyon (YAPILDI)
-    // Oranların düzeltilmesi
+    // Oranların düzeltilmesi (YAPILDI)
     // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi
+
+    // Classlarda SOLID e uygun olmayan durumları belirle ve çöz (ALT AÇIKLAMALARIN HEPSİ BUNUNLA İLGİLİ)
+    // DistanceCalculator interface i eklenerek Açık/Kapalı prensibine zıt durum düzeltildi.
     //
 }
