@@ -1,3 +1,6 @@
+package com.project.transportation;
+
+
 public class Arac {
     private double openingFee;
     private double costPerKm;

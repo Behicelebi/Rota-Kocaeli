@@ -1,4 +1,6 @@
-public class Yasli implements Yolcu{
+package com.project.passenger;
+
+public class Yasli implements Yolcu {
 
     @Override
     public double getDiscountPrice() {

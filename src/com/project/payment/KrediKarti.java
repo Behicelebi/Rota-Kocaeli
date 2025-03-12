@@ -1,5 +1,6 @@
-public class Ogrenci implements Yolcu{
+package com.project.payment;
 
+public class KrediKarti implements Odeme {
     @Override
     public double getDiscountPrice() {
         return 10.0;
@@ -7,6 +8,6 @@ public class Ogrenci implements Yolcu{
 
     @Override
     public String getClassName() {
-        return "Öğrenci";
+        return "Kredi Kartı";
     }
 }

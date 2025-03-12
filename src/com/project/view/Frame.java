@@ -1,3 +1,5 @@
+package com.project.view;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,7 +13,7 @@ public class Frame extends JFrame{
 
     Panel panel = new Panel(WIDTH,HEIGHT);
 
-    Frame(){
+    public Frame(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("EKOMOBİL 2");
         this.setResizable(false);

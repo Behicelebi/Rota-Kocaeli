@@ -1,3 +1,7 @@
+package com.project.view;
+
+import com.project.main.*;
+import com.project.util.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

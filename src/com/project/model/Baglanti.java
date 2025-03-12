@@ -1,3 +1,5 @@
+package com.project.model;
+
 public class Baglanti {
     private String stopId;
     private double mesafe;

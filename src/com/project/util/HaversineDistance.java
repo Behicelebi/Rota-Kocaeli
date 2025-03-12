@@ -1,4 +1,6 @@
-public class HaversineDistance implements DistanceCalculator{
+package com.project.util;
+
+public class HaversineDistance implements DistanceCalculator {
     public double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         final int dunyaYaricap = 6371;
 

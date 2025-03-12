@@ -1,4 +1,7 @@
-public class Nakit implements Odeme{
+package com.project.passenger;
+
+public class Genel implements Yolcu {
+
     @Override
     public double getDiscountPrice() {
         return 0.0;
@@ -6,6 +9,6 @@ public class Nakit implements Odeme{
 
     @Override
     public String getClassName() {
-        return "Nakit";
+        return "Genel";
     }
 }

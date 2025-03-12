@@ -1,3 +1,5 @@
+package com.project.model;
+
 import java.util.List;
 
 public class Durak {

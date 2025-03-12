@@ -1,3 +1,5 @@
+package com.project.model;
+
 public class Transfer {
     private String transferStopId;
     private double transferMesafe;

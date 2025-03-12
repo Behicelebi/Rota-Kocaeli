@@ -1,4 +1,7 @@
-public class KrediKarti implements Odeme{
+package com.project.passenger;
+
+public class Ogrenci implements Yolcu {
+
     @Override
     public double getDiscountPrice() {
         return 10.0;
@@ -6,6 +9,6 @@ public class KrediKarti implements Odeme{
 
     @Override
     public String getClassName() {
-        return "Kredi Kartı";
+        return "Öğrenci";
     }
 }

@@ -1,5 +1,8 @@
-public class Bus extends TopluTasima{
-    Bus(){
+package com.project.transportation;
+
+
+public class Bus extends TopluTasima {
+    public Bus(){
         type = "bus";
     }
 

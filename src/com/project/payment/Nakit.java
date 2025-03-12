@@ -1,5 +1,6 @@
-public class Genel implements Yolcu{
+package com.project.payment;
 
+public class Nakit implements Odeme {
     @Override
     public double getDiscountPrice() {
         return 0.0;
@@ -7,6 +8,6 @@ public class Genel implements Yolcu{
 
     @Override
     public String getClassName() {
-        return "Genel";
+        return "Nakit";
     }
 }

@@ -1,9 +1,12 @@
+package com.project.model;
+
+import com.project.transportation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
 public class AnaVeri {
-    //Yeni araç eklemelerinde sadece json içerisindeki değişken ismi ile bir Arac nesnesi oluştur.
+    //Yeni araç eklemelerinde sadece json içerisindeki değişken ismi ile bir com.project.transportation.Arac nesnesi oluştur.
     //Sonrasında bu araç nesnesi için extra bir getter fonksiyonu ata.
     private String city;
     private Arac taxi ;
