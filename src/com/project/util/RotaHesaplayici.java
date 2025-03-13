@@ -2,10 +2,8 @@ package com.project.util;
 
 import com.project.main.*;
 import com.project.model.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.*;
 
 public class RotaHesaplayici {
     private DistanceCalculator distanceCalculator;
@@ -14,13 +12,13 @@ public class RotaHesaplayici {
         this.distanceCalculator = distanceCalculator;
     }
 
-    public int findNearestStop(double lat, double lon) {
+    public int findNearestStop(double lat, double lon, HashMap<String, Durak> visited) {
         int enKucukIndex = 0;
         int index = 0;
         for(Durak durak : Main.anaVeri.getDuraklar()) {
             if(distanceCalculator.calculateDistance(lat, lon, durak.getLat(), durak.getLon()) <
                     distanceCalculator.calculateDistance(lat, lon, Main.anaVeri.getDuraklar().get(enKucukIndex).getLat(),
-                            Main.anaVeri.getDuraklar().get(enKucukIndex).getLon())) {
+                            Main.anaVeri.getDuraklar().get(enKucukIndex).getLon()) && !visited.containsKey(durak.getId())) {
                 enKucukIndex = index;
             }
             index++;
@@ -36,12 +34,19 @@ public class RotaHesaplayici {
 
     public List<List<String>> findPaths(double lat1, double lon1, double lat2, double lon2) {
         List<List<String>> paths = new ArrayList<>();
-        Set<String> visited = new HashSet<>();
-        List<String> currentPath = new ArrayList<>();
-        String startId = Main.anaVeri.getDuraklar().get(findNearestStop(lat1, lon1)).getId();
-        String endId = Main.anaVeri.getDuraklar().get(findNearestStop(lat2, lon2)).getId();
-        currentPath.add(startId);
-        dfs(startId, endId, visited, currentPath, paths);
+        HashMap<String, Durak> visited2 = new HashMap<>();
+        String endId = Main.anaVeri.getDuraklar().get(findNearestStop(lat2, lon2, visited2)).getId();
+        for (Durak durak : Main.anaVeri.getDuraklar()) {
+            paths.clear();
+            String startId = Main.anaVeri.getDuraklar().get(findNearestStop(lat1, lon1, visited2)).getId();
+            if(Objects.equals(startId, endId)){break;}
+            Set<String> visited = new HashSet<>();
+            List<String> currentPath = new ArrayList<>();
+            currentPath.add(startId);
+            dfs(startId, endId, visited, currentPath, paths);
+            if(!paths.isEmpty()){break;}
+            visited2.put(durak.getId(),durak);
+        }
         return paths;
     }
 
