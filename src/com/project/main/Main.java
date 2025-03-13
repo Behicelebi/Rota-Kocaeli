@@ -109,11 +109,12 @@ public class Main {
     // Uzaklık bulma fonksiyonu (iki koordinat arasında) (YAPILDI)
     // Bütün olası yolları bulan fonksiyon (YAPILDI)
     // Oranların düzeltilmesi (YAPILDI)
-    // Json dosyası içerisine araclar adında bir blok açılması.
+    // Json dosyası içerisine araclar adında bir blok açılması. (YAPILDI)
+    // En yakın durak bulma fonksiyonunu en yakın uygun durağı bulacak şekilde güncelle. (YAPILDI)
     // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi
 
     // Classlarda SOLID e uygun olmayan durumları belirle ve çöz (ALT AÇIKLAMALARIN HEPSİ BUNUNLA İLGİLİ)
     // com.project.util.DistanceCalculator interface i eklenerek Açık/Kapalı prensibine zıt durum düzeltildi.
     // com.project.main içerisinde tercihlerin otomatik alınması eklendi.
-    //
+    // com.project.transportation içerisindeki classların otomatik alınması eklendi.
 }
