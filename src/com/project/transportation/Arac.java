@@ -1,12 +1,17 @@
 package com.project.transportation;
 
 
-public class Arac {
-    private double openingFee;
-    private double costPerKm;
-    private double timePerKm;
+public abstract class Arac {
+    protected String name;
+    protected double openingFee;
+    protected double costPerKm;
+    protected double timePerKm;
 
-    public double getOpeningFee() {return openingFee;}
-    public double getCostPerKm() {return costPerKm;}
-    public double getTimePerKm() {return timePerKm;}
+    public abstract void setOpeningFee(double openingFee);
+    public abstract void setCostPerKm(double costPerKm);
+    public abstract void setTimePerKm(double timePerKm);
+    public abstract double getOpeningFee();
+    public abstract double getCostPerKm();
+    public abstract double getTimePerKm();
+    public abstract String getName();
 }

@@ -97,10 +97,7 @@ public class Main {
         //DEBUG BÖLÜMÜ
 
         System.out.println("Şehir: " + anaVeri.getCity());
-        System.out.println("Taksi Açılış Ücreti: " + anaVeri.getTaxi().getOpeningFee());
-        System.out.println("Scotter Açılış Ücreti: " + anaVeri.getScotter().getOpeningFee());
-        System.out.println("Martı Tag Açılış Ücreti: " + anaVeri.getMarti_tag().getOpeningFee());
-        System.out.println("Taksinin bir kilometreyi gitmesi için geçen dakika: " + anaVeri.getTaxi().getTimePerKm());
+        System.out.println("Araclar: " + anaVeri.getArac());
         System.out.println("Yahyakaptan bustan trama mesafe " + anaVeri.getDuraklar().get(2).getTransfer().getTransferMesafe());
         System.out.println("Bu ne ?" + anaVeri.getDuraklar().get(2).getVehicle().getType());
         System.out.println(anaVeri.getDurakMap().get("bus_otogar").getName());
@@ -112,9 +109,11 @@ public class Main {
     // Uzaklık bulma fonksiyonu (iki koordinat arasında) (YAPILDI)
     // Bütün olası yolları bulan fonksiyon (YAPILDI)
     // Oranların düzeltilmesi (YAPILDI)
+    // Json dosyası içerisine araclar adında bir blok açılması.
     // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi
 
     // Classlarda SOLID e uygun olmayan durumları belirle ve çöz (ALT AÇIKLAMALARIN HEPSİ BUNUNLA İLGİLİ)
     // com.project.util.DistanceCalculator interface i eklenerek Açık/Kapalı prensibine zıt durum düzeltildi.
+    // com.project.main içerisinde tercihlerin otomatik alınması eklendi.
     //
 }

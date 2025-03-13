@@ -1,20 +1,25 @@
 {
   "city": "Izmit",
-  "taxi": {
-    "openingFee": 10.0,
-    "costPerKm": 4.0,
-    "timePerKm": 1.0
-  },
-  "scotter": {
-    "openingFee": 5.0,
-    "costPerKm": 1.5,
-    "timePerKm": 3.0
-  },
-  "marti_tag": {
-    "openingFee": 5,
-    "costPerKm": 3.0,
-    "timePerKm": 1.5
-  },
+  "araclar": [
+    {
+      "name": "taxi",
+      "openingFee": 10.0,
+      "costPerKm": 4.0,
+      "timePerKm": 1.0
+    },
+    {
+      "name": "scooter",
+      "openingFee": 5.0,
+      "costPerKm": 1.5,
+      "timePerKm": 3.0
+    },
+    {
+      "name": "marti_tag",
+      "openingFee": 5,
+      "costPerKm": 3.0,
+      "timePerKm": 1.5
+    }
+  ],
   "duraklar": [
     {
       "id": "bus_otogar",
