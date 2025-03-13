@@ -227,24 +227,14 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             bitisDurak.setEnabled(false);
             calculateButton.setEnabled(false);
         } else if (e.getSource() == baslangicDurak) {
-            for (int i = 0; i < Main.anaVeri.getDuraklar().size(); i++) {
-                if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getName(), baslangicDurak.getSelectedItem())){
-                    BaslangicX = mapToX(Main.anaVeri.getDuraklar().get(i).getLon());
-                    BaslangicY = mapToY(Main.anaVeri.getDuraklar().get(i).getLat());
-                    break;
-                }
-            }
+            BaslangicX = mapToX(Main.anaVeri.getDuraklar().get(baslangicDurak.getSelectedIndex()).getLon());
+            BaslangicY = mapToY(Main.anaVeri.getDuraklar().get(baslangicDurak.getSelectedIndex()).getLat());
             baslangic_lat = Main.anaVeri.getDuraklar().get(baslangicDurak.getSelectedIndex()).getLat();
             baslangic_lon = Main.anaVeri.getDuraklar().get(baslangicDurak.getSelectedIndex()).getLon();
             repaint();
         } else if (e.getSource() == bitisDurak) {
-            for (int i = 0; i < Main.anaVeri.getDuraklar().size(); i++) {
-                if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getName(), bitisDurak.getSelectedItem())){
-                    BitisX = mapToX(Main.anaVeri.getDuraklar().get(i).getLon());
-                    BitisY = mapToY(Main.anaVeri.getDuraklar().get(i).getLat());
-                    break;
-                }
-            }
+            BitisX = mapToX(Main.anaVeri.getDuraklar().get(bitisDurak.getSelectedIndex()).getLon());
+            BitisY = mapToY(Main.anaVeri.getDuraklar().get(bitisDurak.getSelectedIndex()).getLat());
             bitis_lat = Main.anaVeri.getDuraklar().get(bitisDurak.getSelectedIndex()).getLat();
             bitis_lon = Main.anaVeri.getDuraklar().get(bitisDurak.getSelectedIndex()).getLon();
             repaint();
