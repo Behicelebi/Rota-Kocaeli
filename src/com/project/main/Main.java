@@ -23,6 +23,7 @@ public class Main {
     public static ArrayList<Yolcu> Yolcular = new ArrayList<>();
     public static ArrayList<Odeme> OdemeYontemleri = new ArrayList<>();
     public static ArrayList<TopluTasima> TopluTasimaYontemleri = new ArrayList<>();
+    public static ArrayList<Arac> Araclar = new ArrayList<>();
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {

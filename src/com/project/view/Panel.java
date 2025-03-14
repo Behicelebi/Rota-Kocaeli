@@ -22,7 +22,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
     int HEIGHT;
     public Image map_texture,bus_durak_texture,tram_durak_texture,startingLocation,finalLocation;
     int BaslangicX =-10, BaslangicY =-10, BitisX=-10, BitisY=-10;
-    JComboBox selectType, selectBuy, baslangicDurak, bitisDurak;
+    JComboBox selectType, selectBuy, selectArac, baslangicDurak, bitisDurak;
     JButton baslangicButton, bitisButton, calculateButton;
     boolean baslangicSeciliyor=false,bitisSeciliyor=false;
     double baslangic_lat=0, baslangic_lon=0, bitis_lat=0, bitis_lon=0;
@@ -68,6 +68,14 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         selectBuy.setFocusable(false);
         selectBuy.setBounds(20,257,160,23);
         this.add(selectBuy);
+
+        selectArac = new JComboBox();
+        selectArac.setFont(new Font("Consolas Bold",Font.PLAIN,15));
+        for (int i = 0; i< Main.Araclar.size(); i++){selectArac.addItem(Main.Araclar.get(i).getName());}
+        selectArac.addActionListener(this);
+        selectArac.setFocusable(false);
+        selectArac.setBounds(20,134,160,23);
+        this.add(selectArac);
 
         baslangicDurak = new JComboBox();
         baslangicDurak.setFont(new Font("Consolas Bold",Font.PLAIN,15));
