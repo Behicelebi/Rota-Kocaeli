@@ -58,7 +58,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.Yolcular.size(); i++){selectType.addItem(Main.Yolcular.get(i).getClassName());}
         selectType.addActionListener(this);
         selectType.setFocusable(false);
-        selectType.setBounds(20,194,160,23);
+        selectType.setBounds(20,224,160,23);
         this.add(selectType);
 
         selectBuy = new JComboBox();
@@ -66,7 +66,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.OdemeYontemleri.size(); i++){selectBuy.addItem(Main.OdemeYontemleri.get(i).getClassName());}
         selectBuy.addActionListener(this);
         selectBuy.setFocusable(false);
-        selectBuy.setBounds(20,257,160,23);
+        selectBuy.setBounds(20,287,160,23);
         this.add(selectBuy);
 
         selectArac = new JComboBox();
@@ -74,7 +74,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.Araclar.size(); i++){selectArac.addItem(Main.Araclar.get(i).getName());}
         selectArac.addActionListener(this);
         selectArac.setFocusable(false);
-        selectArac.setBounds(20,134,160,23);
+        selectArac.setBounds(20,164,160,23);
         this.add(selectArac);
 
         baslangicDurak = new JComboBox();
@@ -82,7 +82,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){baslangicDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         baslangicDurak.addActionListener(this);
         baslangicDurak.setFocusable(false);
-        baslangicDurak.setBounds(20,377,160,23);
+        baslangicDurak.setBounds(20,407,160,23);
         this.add(baslangicDurak);
 
         bitisDurak = new JComboBox();
@@ -90,26 +90,26 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){bitisDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         bitisDurak.addActionListener(this);
         bitisDurak.setFocusable(false);
-        bitisDurak.setBounds(20,567,160,23);
+        bitisDurak.setBounds(20,597,160,23);
         this.add(bitisDurak);
 
         baslangicButton = new JButton("Manuel Seç");
         baslangicButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        baslangicButton.setBounds(20,320,160,23);
+        baslangicButton.setBounds(20,350,160,23);
         baslangicButton.setFocusable(false);
         baslangicButton.addActionListener(this);
         this.add(baslangicButton);
 
         bitisButton = new JButton("Manuel Seç");
         bitisButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        bitisButton.setBounds(20,510,160,23);
+        bitisButton.setBounds(20,540,160,23);
         bitisButton.setFocusable(false);
         bitisButton.addActionListener(this);
         this.add(bitisButton);
 
         calculateButton = new JButton("Hesapla");
         calculateButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        calculateButton.setBounds(20,700,160,23);
+        calculateButton.setBounds(20,730,160,23);
         calculateButton.setFocusable(false);
         calculateButton.addActionListener(this);
         this.add(calculateButton);
@@ -190,20 +190,21 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         g2d.fillRect(0,0,200,HEIGHT);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Copperplate Gothic Bold",Font.PLAIN,25));
-        g2d.drawString("E-KOMOBIL 2", 10,110);
+        g2d.drawString("E-KOMOBIL 2", 10,80);
         g2d.setFont(new Font("Consolas",Font.PLAIN,13));
-        g2d.drawString("Yolcu tipi seçiniz",10,180);
-        g2d.drawString("Ödeme tipi seçiniz",10,243);
-        g2d.drawString("Başlangıç noktası seçiniz",10,306);
-        g2d.drawString("Bitiş noktası seçiniz",10,496);
-        g2d.drawString("Durak seç",20,363);
-        g2d.drawString("Seçilen:",20,420);
-        g2d.drawString("Lat: "+baslangic_lat,20,440);
-        g2d.drawString("Lon: "+baslangic_lon,20,460);
-        g2d.drawString("Durak seç",20,553);
-        g2d.drawString("Seçilen:",20,610);
-        g2d.drawString("Lat: "+bitis_lat,20,630);
-        g2d.drawString("Lon: "+bitis_lon,20,650);
+        g2d.drawString("Araç tipi seçiniz",10,150);
+        g2d.drawString("Yolcu tipi seçiniz",10,210);
+        g2d.drawString("Ödeme tipi seçiniz",10,273);
+        g2d.drawString("Başlangıç noktası seçiniz",10,336);
+        g2d.drawString("Bitiş noktası seçiniz",10,526);
+        g2d.drawString("Durak seç",20,393);
+        g2d.drawString("Seçilen:",20,450);
+        g2d.drawString("Lat: "+baslangic_lat,20,470);
+        g2d.drawString("Lon: "+baslangic_lon,20,490);
+        g2d.drawString("Durak seç",20,583);
+        g2d.drawString("Seçilen:",20,640);
+        g2d.drawString("Lat: "+bitis_lat,20,660);
+        g2d.drawString("Lon: "+bitis_lon,20,680);
     }
 
     @Override

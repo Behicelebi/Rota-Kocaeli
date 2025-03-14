@@ -33,6 +33,6 @@ public class Marti_tag extends Arac{
 
     @Override
     public String getName() {
-        return "Marti_tag";
+        return "Marti Tag";
     }
 }
