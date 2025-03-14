@@ -55,7 +55,7 @@ public class Main {
         System.out.println("Yahyakaptan bustan trama mesafe " + anaVeri.getDuraklar().get(2).getTransfer().getTransferMesafe());
         System.out.println("Bu ne ?" + anaVeri.getDuraklar().get(2).getVehicle().getType());
         System.out.println(anaVeri.getDurakMap().get("bus_otogar").getName());
-        System.out.println(anaVeri.getArac().get(0).getName());
+        System.out.println(Araclar.get(2).getName());
     }
 
     // NOTLAR (DAHA ÇOK TO-DO LIST)
@@ -66,6 +66,7 @@ public class Main {
     // Oranların düzeltilmesi (YAPILDI)
     // Json dosyası içerisine araclar adında bir blok açılması. (YAPILDI)
     // En yakın durak bulma fonksiyonunu en yakın uygun durağı bulacak şekilde güncelle. (YAPILDI)
+    // Otomatik oluşturma classı yapılacak ve bunun içerisine araçların otomatik oluşturulması da eklenecek (YAPILDI)
     // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması.
     // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi
 

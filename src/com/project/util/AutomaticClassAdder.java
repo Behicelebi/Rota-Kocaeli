@@ -11,6 +11,8 @@ import io.github.classgraph.ScanResult;
 
 public class AutomaticClassAdder {
     public AutomaticClassAdder() {
+        // YOLCU TİPLERİNİN OTOMATİK EKLENMESİ
+
         try (ScanResult scanResult = new ClassGraph().enableAllInfo().acceptPackages("com.project.passenger").scan()) {
             ClassInfoList yolcuClasses = scanResult.getClassesImplementing(Yolcu.class.getName());
             for(ClassInfo classInfo : yolcuClasses){
@@ -25,6 +27,8 @@ public class AutomaticClassAdder {
                 }
             }
         }
+
+        // ÖDEME YÖNTEMLERİNİN OTOMATİK EKLENEMESİ
 
         try (ScanResult scanResult = new ClassGraph().enableAllInfo().acceptPackages("com.project.payment").scan()) {
             ClassInfoList odemeClasses = scanResult.getClassesImplementing(Odeme.class.getName());
@@ -41,6 +45,8 @@ public class AutomaticClassAdder {
             }
         }
 
+        // TOPLU TAŞIMA YÖNTEMLERİNİN OTOMATİK EKLENMESİ
+
         try (ScanResult scanResult = new ClassGraph().enableAllInfo().acceptPackages("com.project.transportation").scan()) {
             ClassInfoList topluTasimaClasses = scanResult.getSubclasses(TopluTasima.class.getName());
             for(ClassInfo classInfo : topluTasimaClasses){
@@ -56,19 +62,8 @@ public class AutomaticClassAdder {
             }
         }
 
-        try (ScanResult scanResult = new ClassGraph().enableAllInfo().acceptPackages("com.project.transportation").scan()) {
-            ClassInfoList aracClasses = scanResult.getSubclasses(Arac.class.getName());
-            for(ClassInfo classInfo : aracClasses){
-                try {
-                    if (!classInfo.isAbstract()) {
-                        Arac topluTasima = (Arac) classInfo.loadClass().getDeclaredConstructor().newInstance();
-                        Main.Araclar.add(topluTasima);
-                    }
-                } catch (Exception e) {
-                    System.err.println("Error creating object: " + classInfo.getSimpleName());
-                    e.printStackTrace();
-                }
-            }
-        }
+        // ARAC TİPLERİNİN OTOMATİK EKLENMESİ
+
+        Main.Araclar.addAll(Main.anaVeri.getArac());
     }
 }
