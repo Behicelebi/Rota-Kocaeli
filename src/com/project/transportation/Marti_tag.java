@@ -1,5 +1,7 @@
 package com.project.transportation;
 
+import java.awt.*;
+
 public class Marti_tag extends Arac{
     @Override
     public void setOpeningFee(double openingFee) {
@@ -34,5 +36,10 @@ public class Marti_tag extends Arac{
     @Override
     public String getName() {
         return "Marti Tag";
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.MAGENTA;
     }
 }

@@ -1,5 +1,7 @@
 package com.project.transportation;
 
+import java.awt.*;
+
 public class Taxi extends Arac {
     @Override
     public void setOpeningFee(double openingFee) {
@@ -34,5 +36,10 @@ public class Taxi extends Arac {
     @Override
     public String getName() {
         return "Taxi";
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.YELLOW;
     }
 }

@@ -1,11 +1,13 @@
 package com.project.transportation;
 
+import java.awt.*;
 
 public abstract class Arac {
     protected String name;
     protected double openingFee;
     protected double costPerKm;
     protected double timePerKm;
+    protected Color color;
 
     public abstract void setOpeningFee(double openingFee);
     public abstract void setCostPerKm(double costPerKm);
@@ -14,4 +16,5 @@ public abstract class Arac {
     public abstract double getCostPerKm();
     public abstract double getTimePerKm();
     public abstract String getName();
+    public abstract Color getColor();
 }
