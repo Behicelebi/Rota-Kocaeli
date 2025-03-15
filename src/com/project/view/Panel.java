@@ -24,12 +24,13 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
     int HEIGHT;
     public Image map_texture,bus_durak_texture,tram_durak_texture,startingLocation,finalLocation;
     int BaslangicX =-10, BaslangicY =-10, BitisX=-10, BitisY=-10;
-    JComboBox selectType, selectBuy, selectArac, baslangicDurak, bitisDurak;
+    JComboBox selectType, selectBuy, selectArac, selectPath, baslangicDurak, bitisDurak;
     JButton baslangicButton, bitisButton, calculateButton;
-    boolean baslangicSeciliyor=false,bitisSeciliyor=false;
+    boolean baslangicSeciliyor=false,bitisSeciliyor=false,calculated=false;
     double baslangic_lat=0, baslangic_lon=0, bitis_lat=0, bitis_lon=0;
     private static final Logger logger = Logger.getLogger(Panel.class.getName());
     double minlat=40.75,maxlat=40.83,minlon=29.90,maxlon=29.97;
+    List<RotaBilgisi> rotaInfo;
 
     //SOLID PRENSIPLERINDEN AÇIK/KAPALI PRENSİBİNİN DOĞRU UYGULANMASI İÇİN BURASI ÖNEMLİ
 
@@ -60,7 +61,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.Yolcular.size(); i++){selectType.addItem(Main.Yolcular.get(i).getClassName());}
         selectType.addActionListener(this);
         selectType.setFocusable(false);
-        selectType.setBounds(20,224,160,23);
+        selectType.setBounds(20,164,160,23);
         this.add(selectType);
 
         selectBuy = new JComboBox();
@@ -68,7 +69,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.OdemeYontemleri.size(); i++){selectBuy.addItem(Main.OdemeYontemleri.get(i).getClassName());}
         selectBuy.addActionListener(this);
         selectBuy.setFocusable(false);
-        selectBuy.setBounds(20,287,160,23);
+        selectBuy.setBounds(20,227,160,23);
         this.add(selectBuy);
 
         selectArac = new JComboBox();
@@ -76,7 +77,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.Araclar.size(); i++){selectArac.addItem(Main.Araclar.get(i).getName());}
         selectArac.addActionListener(this);
         selectArac.setFocusable(false);
-        selectArac.setBounds(20,164,160,23);
+        selectArac.setBounds(20,104,160,23);
         this.add(selectArac);
 
         baslangicDurak = new JComboBox();
@@ -84,7 +85,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){baslangicDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         baslangicDurak.addActionListener(this);
         baslangicDurak.setFocusable(false);
-        baslangicDurak.setBounds(20,407,160,23);
+        baslangicDurak.setBounds(20,347,160,23);
         this.add(baslangicDurak);
 
         bitisDurak = new JComboBox();
@@ -92,29 +93,36 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){bitisDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         bitisDurak.addActionListener(this);
         bitisDurak.setFocusable(false);
-        bitisDurak.setBounds(20,597,160,23);
+        bitisDurak.setBounds(20,537,160,23);
         this.add(bitisDurak);
 
         baslangicButton = new JButton("Manuel Seç");
         baslangicButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        baslangicButton.setBounds(20,350,160,23);
+        baslangicButton.setBounds(20,290,160,23);
         baslangicButton.setFocusable(false);
         baslangicButton.addActionListener(this);
         this.add(baslangicButton);
 
         bitisButton = new JButton("Manuel Seç");
         bitisButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        bitisButton.setBounds(20,540,160,23);
+        bitisButton.setBounds(20,480,160,23);
         bitisButton.setFocusable(false);
         bitisButton.addActionListener(this);
         this.add(bitisButton);
 
         calculateButton = new JButton("Hesapla");
         calculateButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        calculateButton.setBounds(20,730,160,23);
+        calculateButton.setBounds(20,640,160,23);
         calculateButton.setFocusable(false);
         calculateButton.addActionListener(this);
         this.add(calculateButton);
+
+        selectPath = new JComboBox();
+        selectPath.setFont(new Font("Consolas Bold",Font.PLAIN,15));
+        selectPath.addActionListener(this);
+        selectPath.setFocusable(false);
+        selectPath.setBounds(20,690,160,23);
+        this.add(selectPath);
     }
 
     public int mapToX(double longitude) {
@@ -164,14 +172,29 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         // Set anti-alias for text
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
-            g.setColor(Color.green);
-            for (int j = 0; j < Main.anaVeri.getDuraklar().get(i).getNextStops().size(); j++) {
-                drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId()).getLat()));
+        if(!calculated){
+            for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
+                g.setColor(Color.green);
+                for (int j = 0; j < Main.anaVeri.getDuraklar().get(i).getNextStops().size(); j++) {
+                    drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId()).getLat()));
+                }
+                if(Main.anaVeri.getDuraklar().get(i).getTransfer()!=null){
+                    g.setColor(Color.orange);
+                    drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLat()));
+                }
             }
-            if(Main.anaVeri.getDuraklar().get(i).getTransfer()!=null){
-                g.setColor(Color.orange);
-                drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLat()));
+        }else {
+            g.setColor(Color.green);
+            if (!rotaInfo.isEmpty()) {
+                if(!rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().isEmpty()){
+                    drawLineWithArrow(g2d, mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLatitude()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(0)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(0)).getLat()));
+                    for (int i = 0; i < rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size() - 1; i++) {
+                        drawLineWithArrow(g2d, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLat()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLat()));
+                    }
+                    drawLineWithArrow(g2d, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size() - 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size() - 1)).getLat()), mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLatitude()));
+                } else {
+                    drawLineWithArrow(g2d, mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLatitude()), mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLatitude()));
+                }
             }
         }
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
@@ -192,35 +215,36 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         g2d.fillRect(0,0,200,HEIGHT);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Copperplate Gothic Bold",Font.PLAIN,25));
-        g2d.drawString("E-KOMOBIL 2", 10,80);
+        g2d.drawString("E-KOMOBIL 2", 10,50);
         g2d.setFont(new Font("Consolas",Font.PLAIN,13));
-        g2d.drawString("Araç tipi seçiniz",10,150);
-        g2d.drawString("Yolcu tipi seçiniz",10,210);
-        g2d.drawString("Ödeme tipi seçiniz",10,273);
-        g2d.drawString("Başlangıç noktası seçiniz",10,336);
-        g2d.drawString("Bitiş noktası seçiniz",10,526);
-        g2d.drawString("Durak seç",20,393);
-        g2d.drawString("Seçilen:",20,450);
-        g2d.drawString("Lat: "+baslangic_lat,20,470);
-        g2d.drawString("Lon: "+baslangic_lon,20,490);
-        g2d.drawString("Durak seç",20,583);
-        g2d.drawString("Seçilen:",20,640);
-        g2d.drawString("Lat: "+bitis_lat,20,660);
-        g2d.drawString("Lon: "+bitis_lon,20,680);
+        g2d.drawString("Araç tipi seçiniz",10,90);
+        g2d.drawString("Yolcu tipi seçiniz",10,150);
+        g2d.drawString("Ödeme tipi seçiniz",10,213);
+        g2d.drawString("Başlangıç noktası seçiniz",10,276);
+        g2d.drawString("Bitiş noktası seçiniz",10,466);
+        g2d.drawString("Durak seç",20,333);
+        g2d.drawString("Seçilen:",20,390);
+        g2d.drawString("Lat: "+baslangic_lat,20,410);
+        g2d.drawString("Lon: "+baslangic_lon,20,430);
+        g2d.drawString("Durak seç",20,523);
+        g2d.drawString("Seçilen:",20,580);
+        g2d.drawString("Lat: "+bitis_lat,20,600);
+        g2d.drawString("Lon: "+bitis_lon,20,620);
+        g2d.drawString("Yol seçiniz",10,680);
+        if(rotaInfo == null || rotaInfo.isEmpty() || !calculated){
+            g2d.drawString("Uzunluk: 0.0 km",20,725);
+            g2d.drawString("Sure: 0.0 dk",20,745);
+            g2d.drawString("Ucret: 0.0 TL",20,765);
+        }else{
+            g2d.drawString(String.format("Uzunluk: %.2f km",rotaInfo.get(selectPath.getSelectedIndex()).getYolUzunlugu()),20,725);
+            g2d.drawString(String.format("Sure: %.2f dk",rotaInfo.get(selectPath.getSelectedIndex()).getYolSuresi()),20,745);
+            g2d.drawString(String.format("Ucret: %.2f TL",rotaInfo.get(selectPath.getSelectedIndex()).getYolUcreti()),20,765);
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == selectType){
-            //System.out.println(selectType.getSelectedIndex());
-            //System.out.println(Main.Yolcular.get(selectType.getSelectedIndex()).getDiscountPrice());
-        } else if (e.getSource() == selectBuy) {
-            //System.out.println(selectBuy.getSelectedIndex());
-            //System.out.println(Main.OdemeYontemleri.get(selectBuy.getSelectedIndex()).getDiscountPrice());
-        } else if (e.getSource() == selectArac) {
-            //System.out.println(selectArac.getSelectedIndex());
-            //System.out.println(Main.Araclar.get(selectArac.getSelectedIndex()).getName());
-        } else if (e.getSource() == baslangicButton) {
+        if (e.getSource() == baslangicButton) {
             baslangicButton.setText("Seciliyor...");
             baslangicSeciliyor = true;
             selectType.setEnabled(false);
@@ -230,6 +254,9 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             baslangicDurak.setEnabled(false);
             bitisDurak.setEnabled(false);
             calculateButton.setEnabled(false);
+            selectPath.removeAllItems();
+            calculated=false;
+            repaint();
         } else if (e.getSource() == bitisButton) {
             bitisButton.setText("Seciliyor...");
             bitisSeciliyor = true;
@@ -240,23 +267,34 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             baslangicDurak.setEnabled(false);
             bitisDurak.setEnabled(false);
             calculateButton.setEnabled(false);
+            selectPath.removeAllItems();
+            calculated=false;
+            repaint();
         } else if (e.getSource() == baslangicDurak) {
             BaslangicX = mapToX(Main.anaVeri.getDuraklar().get(baslangicDurak.getSelectedIndex()).getLon());
             BaslangicY = mapToY(Main.anaVeri.getDuraklar().get(baslangicDurak.getSelectedIndex()).getLat());
             baslangic_lat = Main.anaVeri.getDuraklar().get(baslangicDurak.getSelectedIndex()).getLat();
             baslangic_lon = Main.anaVeri.getDuraklar().get(baslangicDurak.getSelectedIndex()).getLon();
+            selectPath.removeAllItems();
+            calculated=false;
             repaint();
         } else if (e.getSource() == bitisDurak) {
             BitisX = mapToX(Main.anaVeri.getDuraklar().get(bitisDurak.getSelectedIndex()).getLon());
             BitisY = mapToY(Main.anaVeri.getDuraklar().get(bitisDurak.getSelectedIndex()).getLat());
             bitis_lat = Main.anaVeri.getDuraklar().get(bitisDurak.getSelectedIndex()).getLat();
             bitis_lon = Main.anaVeri.getDuraklar().get(bitisDurak.getSelectedIndex()).getLon();
+            selectPath.removeAllItems();
+            calculated=false;
             repaint();
         } else if (e.getSource() == calculateButton) {
             if(baslangic_lat==bitis_lat && baslangic_lon==bitis_lon){JOptionPane.showMessageDialog(null,"Aynı yeri seçmeyiniz lütfen");}
             else{
-                List<RotaBilgisi> rotaInfo = rotaHesaplayici.calculatePathDetails(baslangic_lat, baslangic_lon, bitis_lat, bitis_lon,
+                rotaInfo = rotaHesaplayici.calculatePathDetails(baslangic_lat, baslangic_lon, bitis_lat, bitis_lon,
                         selectArac.getSelectedIndex(), selectType.getSelectedIndex(), selectBuy.getSelectedIndex());
+                selectPath.removeAllItems();
+                for (int i = 1; i <= rotaInfo.size(); i++) {selectPath.addItem("Path "+i);}
+                calculated=true;
+                repaint();
                 // DEBUG
                 System.out.println("Rota bilgileri: ");
                 System.out.println("Oluşturulan rotalar: " + rotaInfo.size() + " adet.");
@@ -267,6 +305,8 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
                     System.out.println("Rota suresi: " + rotaInfo.get(0).getYolSuresi() + " dakika.");
                 }
             } //Buraya Döneceğiz
+        } else if (e.getSource() == selectPath) {
+            repaint();
         }
     }
 
@@ -278,8 +318,6 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             BaslangicY = SecilenY;
             baslangic_lon = minlon + ((maxlon - minlon) * (double)SecilenX / 1200.0);
             baslangic_lat = maxlat - ((maxlat - minlat) * (double)SecilenY / 800.0);
-            //System.out.println(baslangic_lat);
-            //System.out.println(baslangic_lon);
             baslangicButton.setText("Manuel Sec");
             baslangicSeciliyor = false;
             selectType.setEnabled(true);
@@ -296,8 +334,6 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             BitisY = SecilenY;
             bitis_lon = minlon + ((maxlon - minlon) * (double)SecilenX / 1200.0);
             bitis_lat = maxlat - ((maxlat - minlat) * (double)SecilenY / 800.0);
-            //System.out.println(bitis_lat);
-            //System.out.println(bitis_lon);
             bitisButton.setText("Manuel Sec");
             bitisSeciliyor = false;
             selectType.setEnabled(true);

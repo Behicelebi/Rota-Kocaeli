@@ -44,77 +44,114 @@ public class RotaHesaplayici {
             currentRoute.setYolSuresi(findPathTime(currentRoute));
             pathDetails.add(currentRoute);
         }
+        RotaBilgisi currentRoute = new RotaBilgisi();
+        currentRoute.setAracId(aracIndex);
+        currentRoute.setYolcuId(yolcuIndex);
+        currentRoute.setOdemeId(odemeIndex);
+        currentRoute.setBaslangicLatitude(lat1);
+        currentRoute.setBaslangicLongitude(lon1);
+        currentRoute.setBitisLatitude(lat2);
+        currentRoute.setBitisLongitude(lon2);
+        currentRoute.setYolDuraklari(new ArrayList<>());
+        currentRoute.setYolUzunlugu(findPathLength(currentRoute));
+        currentRoute.setYolUcreti(findPathCost(currentRoute));
+        currentRoute.setYolSuresi(findPathTime(currentRoute));
+        pathDetails.add(currentRoute);
         return pathDetails;
     }
 
     private double findPathTime(RotaBilgisi currentRoute) {
         final double walkTimePerKm = Main.Yolcular.get(currentRoute.getYolcuId()).getWalkTimePerKm();
-        if(findPathStartLength(currentRoute) > 3.0){
-            currentRoute.setYolSuresi(currentRoute.getYolSuresi() + Main.Araclar.get(currentRoute.getAracId()).getTimePerKm() * findPathStartLength(currentRoute));
-        } else {
-            currentRoute.setYolSuresi(currentRoute.getYolSuresi() + walkTimePerKm * findPathStartLength(currentRoute));
-        }
-        for(int i = 0; i < currentRoute.getYolDuraklari().size() - 1; i++) {
-            for(Baglanti durakId : Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getNextStops()){
-                if(durakId.getStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
-                    currentRoute.setYolSuresi(currentRoute.getYolSuresi() + durakId.getSure());
-                    break;
+        if(!currentRoute.getYolDuraklari().isEmpty()){
+            if(findPathStartLength(currentRoute) > 3.0){
+                currentRoute.setYolSuresi(currentRoute.getYolSuresi() + Main.Araclar.get(currentRoute.getAracId()).getTimePerKm() * findPathStartLength(currentRoute));
+            } else {
+                currentRoute.setYolSuresi(currentRoute.getYolSuresi() + walkTimePerKm * findPathStartLength(currentRoute));
+            }
+            for(int i = 0; i < currentRoute.getYolDuraklari().size() - 1; i++) {
+                for(Baglanti durakId : Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getNextStops()){
+                    if(durakId.getStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
+                        currentRoute.setYolSuresi(currentRoute.getYolSuresi() + durakId.getSure());
+                        break;
+                    }
+                }
+                if(Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
+                    currentRoute.setYolSuresi(currentRoute.getYolSuresi() + Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferSure());
                 }
             }
-            if(Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
-                currentRoute.setYolSuresi(currentRoute.getYolSuresi() + Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferSure());
+            if(findPathEndLength(currentRoute) > 3.0){
+                currentRoute.setYolSuresi(currentRoute.getYolSuresi() + Main.Araclar.get(currentRoute.getAracId()).getTimePerKm() * findPathEndLength(currentRoute));
+            } else {
+                currentRoute.setYolSuresi(currentRoute.getYolSuresi() + walkTimePerKm * findPathEndLength(currentRoute));
+            }
+        }else{
+            double pathLength = distanceCalculator.calculateDistance(currentRoute.getBaslangicLatitude(),currentRoute.getBaslangicLongitude(),currentRoute.getBitisLatitude(),currentRoute.getBitisLongitude());
+            if(pathLength > 3.0){
+                currentRoute.setYolSuresi(currentRoute.getYolSuresi() + Main.Araclar.get(currentRoute.getAracId()).getTimePerKm() * pathLength);
+            } else {
+                currentRoute.setYolSuresi(currentRoute.getYolSuresi() + walkTimePerKm * pathLength);
             }
         }
-        if(findPathEndLength(currentRoute) > 3.0){
-            currentRoute.setYolSuresi(currentRoute.getYolSuresi() + Main.Araclar.get(currentRoute.getAracId()).getTimePerKm() * findPathEndLength(currentRoute));
-        } else {
-            currentRoute.setYolSuresi(currentRoute.getYolSuresi() + walkTimePerKm * findPathEndLength(currentRoute));
-        }
+
         return currentRoute.getYolSuresi();
     }
 
     private double findPathCost(RotaBilgisi currentRoute) {
-        for(int i = 0; i < currentRoute.getYolDuraklari().size() - 1; i++) {
-            for(Baglanti durakId : Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getNextStops()){
-                if(durakId.getStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
-                    currentRoute.setYolUcreti(currentRoute.getYolUcreti() + durakId.getUcret());
-                    break;
+        if(!currentRoute.getYolDuraklari().isEmpty()){
+            for(int i = 0; i < currentRoute.getYolDuraklari().size() - 1; i++) {
+                for(Baglanti durakId : Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getNextStops()){
+                    if(durakId.getStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
+                        currentRoute.setYolUcreti(currentRoute.getYolUcreti() + durakId.getUcret());
+                        break;
+                    }
+                }
+                if(Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
+                    currentRoute.setYolUcreti(currentRoute.getYolUcreti() + Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferUcret());
                 }
             }
-            if(Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
-                currentRoute.setYolUcreti(currentRoute.getYolUcreti() + Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferUcret());
+            if(Main.OdemeYontemleri.get(currentRoute.getOdemeId()).getClassName().equals("Kentkart")){
+                currentRoute.setYolUcreti(currentRoute.getYolUcreti() * Main.OdemeYontemleri.get(currentRoute.getOdemeId()).getDiscountPrice() *
+                        Main.Yolcular.get(currentRoute.getYolcuId()).getDiscountPrice());
+            } else {
+                currentRoute.setYolUcreti(currentRoute.getYolUcreti() * Main.OdemeYontemleri.get(currentRoute.getOdemeId()).getDiscountPrice());
+            }
+            if(findPathStartLength(currentRoute) > 3.0){
+                currentRoute.setYolUcreti(currentRoute.getYolUcreti() + Main.Araclar.get(currentRoute.getAracId()).getOpeningFee() +
+                        Main.Araclar.get(currentRoute.getAracId()).getCostPerKm() * findPathStartLength(currentRoute));
+            }
+            if(findPathEndLength(currentRoute) > 3.0){
+                currentRoute.setYolUcreti(currentRoute.getYolUcreti() + Main.Araclar.get(currentRoute.getAracId()).getOpeningFee() +
+                        Main.Araclar.get(currentRoute.getAracId()).getCostPerKm() * findPathEndLength(currentRoute));
+            }
+        } else {
+            double pathLength = distanceCalculator.calculateDistance(currentRoute.getBaslangicLatitude(),currentRoute.getBaslangicLongitude(),currentRoute.getBitisLatitude(),currentRoute.getBitisLongitude());
+            if(pathLength > 3.0){
+                currentRoute.setYolUcreti(currentRoute.getYolUcreti() + Main.Araclar.get(currentRoute.getAracId()).getOpeningFee() +
+                        Main.Araclar.get(currentRoute.getAracId()).getCostPerKm() * pathLength);
             }
         }
-        if(Main.OdemeYontemleri.get(currentRoute.getOdemeId()).getClassName().equals("Kentkart")){
-            currentRoute.setYolUcreti(currentRoute.getYolUcreti() * Main.OdemeYontemleri.get(currentRoute.getOdemeId()).getDiscountPrice() *
-                    Main.Yolcular.get(currentRoute.getYolcuId()).getDiscountPrice());
-        } else {
-            currentRoute.setYolUcreti(currentRoute.getYolUcreti() * Main.OdemeYontemleri.get(currentRoute.getOdemeId()).getDiscountPrice());
-        }
-        if(findPathStartLength(currentRoute) > 3.0){
-            currentRoute.setYolUcreti(currentRoute.getYolUcreti() + Main.Araclar.get(currentRoute.getAracId()).getOpeningFee() +
-                    Main.Araclar.get(currentRoute.getAracId()).getCostPerKm() * findPathStartLength(currentRoute));
-        }
-        if(findPathEndLength(currentRoute) > 3.0){
-            currentRoute.setYolUcreti(currentRoute.getYolUcreti() + Main.Araclar.get(currentRoute.getAracId()).getOpeningFee() +
-                    Main.Araclar.get(currentRoute.getAracId()).getCostPerKm() * findPathEndLength(currentRoute));
-        }
+
         return currentRoute.getYolUcreti();
     }
 
     private double findPathLength(RotaBilgisi currentRoute) {
-        for(int i = 0; i < currentRoute.getYolDuraklari().size() - 1; i++) {
-            for(Baglanti durakId : Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getNextStops()){
-                if(durakId.getStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
-                    currentRoute.setYolUzunlugu(currentRoute.getYolUzunlugu() + durakId.getMesafe());
-                    break;
+        if(!currentRoute.getYolDuraklari().isEmpty()){
+            for(int i = 0; i < currentRoute.getYolDuraklari().size() - 1; i++) {
+                for(Baglanti durakId : Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getNextStops()){
+                    if(durakId.getStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
+                        currentRoute.setYolUzunlugu(currentRoute.getYolUzunlugu() + durakId.getMesafe());
+                        break;
+                    }
+                }
+                if(Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
+                    currentRoute.setYolUzunlugu(currentRoute.getYolUzunlugu() + Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferMesafe());
                 }
             }
-            if(Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferStopId().equals(currentRoute.getYolDuraklari().get(i + 1))){
-                currentRoute.setYolUzunlugu(currentRoute.getYolUzunlugu() + Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferMesafe());
-            }
+            currentRoute.setYolUzunlugu(currentRoute.getYolUzunlugu() + findPathStartLength(currentRoute) + findPathEndLength(currentRoute));
+        } else {
+            currentRoute.setYolUzunlugu(currentRoute.getYolUzunlugu() + distanceCalculator.calculateDistance(currentRoute.getBaslangicLatitude(),currentRoute.getBaslangicLongitude(),currentRoute.getBitisLatitude(),currentRoute.getBitisLongitude()));
         }
-        currentRoute.setYolUzunlugu(currentRoute.getYolUzunlugu() + findPathStartLength(currentRoute) + findPathEndLength(currentRoute));
+
         return currentRoute.getYolUzunlugu();
     }
 
