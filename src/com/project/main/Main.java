@@ -67,7 +67,7 @@ public class Main {
     // Json dosyası içerisine araclar adında bir blok açılması. (YAPILDI)
     // En yakın durak bulma fonksiyonunu en yakın uygun durağı bulacak şekilde güncelle. (YAPILDI)
     // Otomatik oluşturma classı yapılacak ve bunun içerisine araçların otomatik oluşturulması da eklenecek (YAPILDI)
-    // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması.
+    // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması. (ŞÜPHELİ)
     // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi
 
     // Classlarda SOLID e uygun olmayan durumları belirle ve çöz (ALT AÇIKLAMALARIN HEPSİ BUNUNLA İLGİLİ)

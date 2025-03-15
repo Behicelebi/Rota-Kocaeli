@@ -33,6 +33,6 @@ public class Scooter extends Arac {
 
     @Override
     public String getName() {
-        return "Scotter";
+        return "Scooter";
     }
 }

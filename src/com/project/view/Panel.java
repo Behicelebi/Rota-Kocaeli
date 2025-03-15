@@ -1,6 +1,7 @@
 package com.project.view;
 
 import com.project.main.*;
+import com.project.model.RotaBilgisi;
 import com.project.util.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.List;
 
 public class Panel extends JPanel implements ActionListener , MouseListener {
     int WIDTH;
@@ -210,11 +212,14 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == selectType){
-            System.out.println(selectType.getSelectedIndex());
-            System.out.println(Main.Yolcular.get(selectType.getSelectedIndex()).getDiscountPrice());
+            //System.out.println(selectType.getSelectedIndex());
+            //System.out.println(Main.Yolcular.get(selectType.getSelectedIndex()).getDiscountPrice());
         } else if (e.getSource() == selectBuy) {
-            System.out.println(selectBuy.getSelectedIndex());
-            System.out.println(Main.OdemeYontemleri.get(selectBuy.getSelectedIndex()).getDiscountPrice());
+            //System.out.println(selectBuy.getSelectedIndex());
+            //System.out.println(Main.OdemeYontemleri.get(selectBuy.getSelectedIndex()).getDiscountPrice());
+        } else if (e.getSource() == selectArac) {
+            //System.out.println(selectArac.getSelectedIndex());
+            //System.out.println(Main.Araclar.get(selectArac.getSelectedIndex()).getName());
         } else if (e.getSource() == baslangicButton) {
             baslangicButton.setText("Seciliyor...");
             baslangicSeciliyor = true;
@@ -249,7 +254,19 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             repaint();
         } else if (e.getSource() == calculateButton) {
             if(baslangic_lat==bitis_lat && baslangic_lon==bitis_lon){JOptionPane.showMessageDialog(null,"Aynı yeri seçmeyiniz lütfen");}
-            else{System.out.println(rotaHesaplayici.findPaths(baslangic_lat,baslangic_lon,bitis_lat,bitis_lon));} //Buraya Döneceğiz
+            else{
+                List<RotaBilgisi> rotaInfo = rotaHesaplayici.calculatePathDetails(baslangic_lat, baslangic_lon, bitis_lat, bitis_lon,
+                        selectArac.getSelectedIndex(), selectType.getSelectedIndex(), selectBuy.getSelectedIndex());
+                // DEBUG
+                System.out.println("Rota bilgileri: ");
+                System.out.println("Oluşturulan rotalar: " + rotaInfo.size() + " adet.");
+                if(!rotaInfo.isEmpty()) {
+                    System.out.println(rotaInfo.get(0).getYolDuraklari());
+                    System.out.println("Rota uzunlugu: " + rotaInfo.get(0).getYolUzunlugu() + " km.");
+                    System.out.println("Rota ucreti: " + rotaInfo.get(0).getYolUcreti() + " TL.");
+                    System.out.println("Rota suresi: " + rotaInfo.get(0).getYolSuresi() + " dakika.");
+                }
+            } //Buraya Döneceğiz
         }
     }
 
@@ -261,8 +278,8 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             BaslangicY = SecilenY;
             baslangic_lon = minlon + ((maxlon - minlon) * (double)SecilenX / 1200.0);
             baslangic_lat = maxlat - ((maxlat - minlat) * (double)SecilenY / 800.0);
-            System.out.println(baslangic_lat);
-            System.out.println(baslangic_lon);
+            //System.out.println(baslangic_lat);
+            //System.out.println(baslangic_lon);
             baslangicButton.setText("Manuel Sec");
             baslangicSeciliyor = false;
             selectType.setEnabled(true);
@@ -279,8 +296,8 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             BitisY = SecilenY;
             bitis_lon = minlon + ((maxlon - minlon) * (double)SecilenX / 1200.0);
             bitis_lat = maxlat - ((maxlat - minlat) * (double)SecilenY / 800.0);
-            System.out.println(bitis_lat);
-            System.out.println(bitis_lon);
+            //System.out.println(bitis_lat);
+            //System.out.println(bitis_lon);
             bitisButton.setText("Manuel Sec");
             bitisSeciliyor = false;
             selectType.setEnabled(true);
