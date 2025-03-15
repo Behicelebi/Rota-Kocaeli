@@ -85,7 +85,12 @@ public class RotaHesaplayici {
                 currentRoute.setYolUcreti(currentRoute.getYolUcreti() + Main.anaVeri.getDurakMap().get(currentRoute.getYolDuraklari().get(i)).getTransfer().getTransferUcret());
             }
         }
-        currentRoute.setYolUcreti(currentRoute.getYolUcreti() * Main.Yolcular.get(currentRoute.getYolcuId()).getDiscountPrice());
+        if(Main.OdemeYontemleri.get(currentRoute.getOdemeId()).getClassName().equals("Kentkart")){
+            currentRoute.setYolUcreti(currentRoute.getYolUcreti() * Main.OdemeYontemleri.get(currentRoute.getOdemeId()).getDiscountPrice() *
+                    Main.Yolcular.get(currentRoute.getYolcuId()).getDiscountPrice());
+        } else {
+            currentRoute.setYolUcreti(currentRoute.getYolUcreti() * Main.OdemeYontemleri.get(currentRoute.getOdemeId()).getDiscountPrice());
+        }
         if(findPathStartLength(currentRoute) > 3.0){
             currentRoute.setYolUcreti(currentRoute.getYolUcreti() + Main.Araclar.get(currentRoute.getAracId()).getOpeningFee() +
                     Main.Araclar.get(currentRoute.getAracId()).getCostPerKm() * findPathStartLength(currentRoute));

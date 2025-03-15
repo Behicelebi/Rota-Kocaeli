@@ -3,7 +3,7 @@ package com.project.payment;
 public class KrediKarti implements Odeme {
     @Override
     public double getDiscountPrice() {
-        return 10.0;
+        return 1.4;
     }
 
     @Override

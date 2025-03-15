@@ -3,7 +3,7 @@ package com.project.payment;
 public class Nakit implements Odeme {
     @Override
     public double getDiscountPrice() {
-        return 0.0;
+        return 1.0;
     }
 
     @Override

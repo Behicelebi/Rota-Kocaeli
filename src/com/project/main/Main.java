@@ -67,8 +67,9 @@ public class Main {
     // Json dosyası içerisine araclar adında bir blok açılması. (YAPILDI)
     // En yakın durak bulma fonksiyonunu en yakın uygun durağı bulacak şekilde güncelle. (YAPILDI)
     // Otomatik oluşturma classı yapılacak ve bunun içerisine araçların otomatik oluşturulması da eklenecek (YAPILDI)
-    // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması. (ŞÜPHELİ)
-    // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi
+    // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi (YAPILDI)
+    // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması. (ŞÜPHELİ) (SORULMASI GEREK)
+    // Görselleştirme ile olası rotaların kullanıcıya sunulması.
 
     // Classlarda SOLID e uygun olmayan durumları belirle ve çöz (ALT AÇIKLAMALARIN HEPSİ BUNUNLA İLGİLİ)
     // com.project.util.DistanceCalculator interface i eklenerek Açık/Kapalı prensibine zıt durum düzeltildi.
