@@ -6,7 +6,7 @@ import com.project.model.*;
 import java.util.*;
 
 public class RotaHesaplayici {
-    private DistanceCalculator distanceCalculator;
+    public DistanceCalculator distanceCalculator;
 
     public RotaHesaplayici(DistanceCalculator distanceCalculator) {
         this.distanceCalculator = distanceCalculator;
