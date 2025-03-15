@@ -70,6 +70,7 @@ public class Main {
     // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi (YAPILDI)
     // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması. (ŞÜPHELİ) (SORULMASI GEREK)
     // Görselleştirme ile olası rotaların kullanıcıya sunulması. (YAPILDI)
+    // rotaHesaplayici getter ile kullanılması.
 
     // Classlarda SOLID e uygun olmayan durumları belirle ve çöz (ALT AÇIKLAMALARIN HEPSİ BUNUNLA İLGİLİ)
     // com.project.util.DistanceCalculator interface i eklenerek Açık/Kapalı prensibine zıt durum düzeltildi.
