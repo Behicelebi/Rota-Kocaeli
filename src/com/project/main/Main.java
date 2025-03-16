@@ -68,9 +68,9 @@ public class Main {
     // En yakın durak bulma fonksiyonunu en yakın uygun durağı bulacak şekilde güncelle. (YAPILDI)
     // Otomatik oluşturma classı yapılacak ve bunun içerisine araçların otomatik oluşturulması da eklenecek (YAPILDI)
     // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi (YAPILDI)
-    // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması. (ŞÜPHELİ) (SORULMASI GEREK)
     // Görselleştirme ile olası rotaların kullanıcıya sunulması. (YAPILDI)
-    // rotaHesaplayici getter ile kullanılması.
+    // rotaHesaplayici getter ile kullanılması. (YAPILDI)
+    // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması. (ŞÜPHELİ) (SORULMASI GEREK)
 
     // Classlarda SOLID e uygun olmayan durumları belirle ve çöz (ALT AÇIKLAMALARIN HEPSİ BUNUNLA İLGİLİ)
     // com.project.util.DistanceCalculator interface i eklenerek Açık/Kapalı prensibine zıt durum düzeltildi.
