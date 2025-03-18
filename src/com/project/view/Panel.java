@@ -101,6 +101,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         baslangicButton.setBounds(20,290,160,23);
         baslangicButton.setFocusable(false);
         baslangicButton.addActionListener(this);
+        baslangicButton.setBackground(Color.cyan);
         this.add(baslangicButton);
 
         bitisButton = new JButton("Manuel Seç");
@@ -108,6 +109,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         bitisButton.setBounds(20,480,160,23);
         bitisButton.setFocusable(false);
         bitisButton.addActionListener(this);
+        bitisButton.setBackground(new Color(255,99,71));
         this.add(bitisButton);
 
         calculateButton = new JButton("Hesapla");
@@ -115,6 +117,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         calculateButton.setBounds(20,640,160,23);
         calculateButton.setFocusable(false);
         calculateButton.addActionListener(this);
+        calculateButton.setBackground(Color.YELLOW);
         this.add(calculateButton);
 
         selectPath = new JComboBox();
@@ -187,18 +190,18 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             if (!rotaInfo.isEmpty()) {
                 if(!rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().isEmpty()){
                     if(rotaHesaplayici.getDistanceCalculator().calculateDistance(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLatitude(),rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLongitude(),Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(0)).getLat(),Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(0)).getLon()) > 3.0){g.setColor(Main.Araclar.get(selectArac.getSelectedIndex()).getColor());}
-                    else{g.setColor(Color.blue);}
+                    else{g.setColor(Color.cyan);}
                     drawLineWithArrow(g2d, mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLatitude()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(0)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(0)).getLat()));
                     g.setColor(Color.green);
                     for (int i = 0; i < rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size() - 1; i++) {
                         drawLineWithArrow(g2d, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLat()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLat()));
                     }
                     if(rotaHesaplayici.getDistanceCalculator().calculateDistance(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLatitude(),rotaInfo.get(selectPath.getSelectedIndex()).getBitisLongitude(),Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size()-1)).getLat(),Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size()-1)).getLon()) > 3.0){g.setColor(Main.Araclar.get(selectArac.getSelectedIndex()).getColor());}
-                    else{g.setColor(Color.blue);}
+                    else{g.setColor(Color.cyan);}
                     drawLineWithArrow(g2d, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size() - 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size() - 1)).getLat()), mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLatitude()));
                 } else {
                     if(rotaHesaplayici.getDistanceCalculator().calculateDistance(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLatitude(),rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLongitude(),rotaInfo.get(selectPath.getSelectedIndex()).getBitisLatitude(),rotaInfo.get(selectPath.getSelectedIndex()).getBitisLongitude()) > 3.0){g.setColor(Main.Araclar.get(selectArac.getSelectedIndex()).getColor());}
-                    else{g.setColor(Color.blue);}
+                    else{g.setColor(Color.cyan);}
                     drawLineWithArrow(g2d, mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLatitude()), mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLatitude()));
                 }
             }
