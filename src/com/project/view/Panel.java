@@ -83,6 +83,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         baslangicDurak = new JComboBox();
         baslangicDurak.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){baslangicDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
+        baslangicDurak.setSelectedItem(null);
         baslangicDurak.addActionListener(this);
         baslangicDurak.setFocusable(false);
         baslangicDurak.setBounds(20,347,160,23);
@@ -91,6 +92,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         bitisDurak = new JComboBox();
         bitisDurak.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){bitisDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
+        bitisDurak.setSelectedItem(null);
         bitisDurak.addActionListener(this);
         bitisDurak.setFocusable(false);
         bitisDurak.setBounds(20,526,160,23);
@@ -296,7 +298,10 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             calculated=false;
             repaint();
         } else if (e.getSource() == calculateButton) {
-            if(baslangic_lat==bitis_lat && baslangic_lon==bitis_lon){JOptionPane.showMessageDialog(null,"Aynı yeri seçmeyiniz lütfen");}
+            if(baslangic_lat==0.0 && baslangic_lon==0.0 && bitis_lat==0.0 && bitis_lon==0.0){JOptionPane.showMessageDialog(null,"Bir yer seçiniz lütfen");}
+            else if(baslangic_lat==bitis_lat && baslangic_lon==bitis_lon){JOptionPane.showMessageDialog(null,"Aynı yeri seçmeyiniz lütfen");}
+            else if(baslangic_lat==0.0 || baslangic_lon==0.0){JOptionPane.showMessageDialog(null,"Başlangıç yerini seçiniz lütfen");}
+            else if(bitis_lat==0.0 || bitis_lon==0.0){JOptionPane.showMessageDialog(null,"Bitiş yerini seçiniz lütfen");}
             else{
                 rotaInfo = rotaHesaplayici.calculatePathDetails(baslangic_lat, baslangic_lon, bitis_lat, bitis_lon,
                         selectArac.getSelectedIndex(), selectType.getSelectedIndex(), selectBuy.getSelectedIndex());
