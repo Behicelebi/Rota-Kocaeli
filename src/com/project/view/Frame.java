@@ -15,7 +15,7 @@ public class Frame extends JFrame{
 
     public Frame(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("EKOMOBİL 2");
+        this.setTitle("E-Komobil 2");
         this.setResizable(false);
         this.setLocation(screenWidth,screenHeight);
         this.setSize(WIDTH,HEIGHT);

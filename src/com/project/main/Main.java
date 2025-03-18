@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class Main {
     public static AnaVeri anaVeri;
     public static ArrayList<Arac> Araclar = new ArrayList<>();
@@ -70,7 +69,7 @@ public class Main {
     // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi (YAPILDI)
     // Görselleştirme ile olası rotaların kullanıcıya sunulması. (YAPILDI)
     // rotaHesaplayici getter ile kullanılması. (YAPILDI)
-    // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması. (ŞÜPHELİ) (SORULMASI GEREK)
+    // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması. (ŞÜPHELİ DEĞİL SORULDU)
 
     // Classlarda SOLID e uygun olmayan durumları belirle ve çöz (ALT AÇIKLAMALARIN HEPSİ BUNUNLA İLGİLİ)
     // com.project.util.DistanceCalculator interface i eklenerek Açık/Kapalı prensibine zıt durum düzeltildi.

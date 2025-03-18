@@ -93,10 +93,10 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){bitisDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         bitisDurak.addActionListener(this);
         bitisDurak.setFocusable(false);
-        bitisDurak.setBounds(20,537,160,23);
+        bitisDurak.setBounds(20,526,160,23);
         this.add(bitisDurak);
 
-        baslangicButton = new JButton("Manuel Seç");
+        baslangicButton = new JButton("Haritadan Seç");
         baslangicButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         baslangicButton.setBounds(20,290,160,23);
         baslangicButton.setFocusable(false);
@@ -104,17 +104,17 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         baslangicButton.setBackground(Color.cyan);
         this.add(baslangicButton);
 
-        bitisButton = new JButton("Manuel Seç");
+        bitisButton = new JButton("Haritadan Seç");
         bitisButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        bitisButton.setBounds(20,480,160,23);
+        bitisButton.setBounds(20,469,160,23);
         bitisButton.setFocusable(false);
         bitisButton.addActionListener(this);
         bitisButton.setBackground(new Color(255,99,71));
         this.add(bitisButton);
 
-        calculateButton = new JButton("Hesapla");
+        calculateButton = new JButton("Yolları Hesapla");
         calculateButton.setFont(new Font("Consolas Bold",Font.PLAIN,15));
-        calculateButton.setBounds(20,640,160,23);
+        calculateButton.setBounds(20,624,160,23);
         calculateButton.setFocusable(false);
         calculateButton.addActionListener(this);
         calculateButton.setBackground(Color.YELLOW);
@@ -124,7 +124,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         selectPath.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         selectPath.addActionListener(this);
         selectPath.setFocusable(false);
-        selectPath.setBounds(20,690,160,23);
+        selectPath.setBounds(20,680,160,23);
         this.add(selectPath);
     }
 
@@ -230,16 +230,16 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         g2d.drawString("Yolcu tipi seçiniz",10,150);
         g2d.drawString("Ödeme tipi seçiniz",10,213);
         g2d.drawString("Başlangıç noktası seçiniz",10,276);
-        g2d.drawString("Bitiş noktası seçiniz",10,466);
-        g2d.drawString("Durak seç",20,333);
+        g2d.drawString("Bitiş noktası seçiniz",10,455);
+        g2d.drawString("Ya da durak seç",20,333);
         g2d.drawString("Seçilen:",20,390);
         g2d.drawString("Lat: "+baslangic_lat,20,410);
         g2d.drawString("Lon: "+baslangic_lon,20,430);
-        g2d.drawString("Durak seç",20,523);
-        g2d.drawString("Seçilen:",20,580);
-        g2d.drawString("Lat: "+bitis_lat,20,600);
-        g2d.drawString("Lon: "+bitis_lon,20,620);
-        g2d.drawString("Yol seçiniz",10,680);
+        g2d.drawString("Ya da durak seç",20,512);
+        g2d.drawString("Seçilen:",20,569);
+        g2d.drawString("Lat: "+bitis_lat,20,589);
+        g2d.drawString("Lon: "+bitis_lon,20,609);
+        g2d.drawString("Hesaplanan yollar",10,667);
         if(rotaInfo == null || rotaInfo.isEmpty() || !calculated){
             g2d.drawString("Uzunluk: 0.0 km",20,725);
             g2d.drawString("Sure: 0.0 dk",20,745);
