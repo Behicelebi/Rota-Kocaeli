@@ -235,12 +235,12 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         g2d.drawString("Bitiş noktası seçiniz",10,455);
         g2d.drawString("Ya da durak seç",20,333);
         g2d.drawString("Seçilen:",20,390);
-        g2d.drawString("Lat: "+baslangic_lat,20,410);
-        g2d.drawString("Lon: "+baslangic_lon,20,430);
+        g2d.drawString(String.format("Lat: %.6f",baslangic_lat),20,410);
+        g2d.drawString(String.format("Lon: %.6f",baslangic_lon),20,430);
         g2d.drawString("Ya da durak seç",20,512);
         g2d.drawString("Seçilen:",20,569);
-        g2d.drawString("Lat: "+bitis_lat,20,589);
-        g2d.drawString("Lon: "+bitis_lon,20,609);
+        g2d.drawString(String.format("Lat: %.6f",bitis_lat),20,589);
+        g2d.drawString(String.format("Lon: %.6f",bitis_lon),20,609);
         g2d.drawString("Hesaplanan yollar",10,667);
         if(rotaInfo == null || rotaInfo.isEmpty() || !calculated){
             g2d.drawString("Uzunluk: 0.0 km",20,725);
