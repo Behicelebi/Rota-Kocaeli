@@ -18,6 +18,12 @@
       "openingFee": 5,
       "costPerKm": 3.0,
       "timePerKm": 1.5
+    },
+    {
+      "name": "helikopter",
+      "openingFee": 5600.0,
+      "costPerKm": 2000,
+      "timePerKm": 0.1
     }
   ],
   "duraklar": [
