@@ -309,15 +309,6 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
                 for (int i = 1; i <= rotaInfo.size(); i++) {selectPath.addItem("Path "+i);}
                 calculated=true;
                 repaint();
-                // DEBUG
-                System.out.println("Rota bilgileri: ");
-                System.out.println("Oluşturulan rotalar: " + rotaInfo.size() + " adet.");
-                if(!rotaInfo.isEmpty()) {
-                    System.out.println(rotaInfo.get(0).getYolDuraklari());
-                    System.out.println("Rota uzunlugu: " + rotaInfo.get(0).getYolUzunlugu() + " km.");
-                    System.out.println("Rota ucreti: " + rotaInfo.get(0).getYolUcreti() + " TL.");
-                    System.out.println("Rota suresi: " + rotaInfo.get(0).getYolSuresi() + " dakika.");
-                }
             } //Buraya Döneceğiz
         } else if (e.getSource() == selectPath) {
             repaint();

@@ -46,15 +46,6 @@ public class Main {
         // GÖRSELLEŞTİRME İÇİN GEREKLİ
 
         new Frame();
-
-        // DEBUG BÖLÜMÜ
-
-        System.out.println("Şehir: " + anaVeri.getCity());
-        System.out.println("Araclar: " + anaVeri.getArac());
-        System.out.println("Yahyakaptan bustan trama mesafe " + anaVeri.getDuraklar().get(2).getTransfer().getTransferMesafe());
-        System.out.println("Bu ne ?" + anaVeri.getDuraklar().get(2).getVehicle().getType());
-        System.out.println(anaVeri.getDurakMap().get("bus_otogar").getName());
-        System.out.println(Araclar.get(2).getName());
     }
 
     // NOTLAR (DAHA ÇOK TO-DO LIST)
