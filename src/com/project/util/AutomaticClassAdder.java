@@ -9,7 +9,11 @@ import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class AutomaticClassAdder {
+    private static final Logger logger = Logger.getLogger(AutomaticClassAdder.class.getName());
     public AutomaticClassAdder() {
         // YOLCU TİPLERİNİN OTOMATİK EKLENMESİ
 
@@ -23,7 +27,7 @@ public class AutomaticClassAdder {
                     }
                 } catch (Exception e) {
                     System.err.println("Error creating object: " + classInfo.getSimpleName());
-                    e.printStackTrace();
+                    logger.log(Level.SEVERE, "Error creating object", e);
                 }
             }
         }
@@ -40,7 +44,7 @@ public class AutomaticClassAdder {
                     }
                 } catch (Exception e) {
                     System.err.println("Error creating object: " + classInfo.getSimpleName());
-                    e.printStackTrace();
+                    logger.log(Level.SEVERE, "Error creating object", e);
                 }
             }
         }
@@ -57,7 +61,7 @@ public class AutomaticClassAdder {
                     }
                 } catch (Exception e) {
                     System.err.println("Error creating object: " + classInfo.getSimpleName());
-                    e.printStackTrace();
+                    logger.log(Level.SEVERE, "Error creating object", e);
                 }
             }
         }

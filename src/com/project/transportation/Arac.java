@@ -7,7 +7,6 @@ public abstract class Arac {
     protected double openingFee;
     protected double costPerKm;
     protected double timePerKm;
-    protected Color color;
 
     public abstract void setOpeningFee(double openingFee);
     public abstract void setCostPerKm(double costPerKm);

@@ -24,7 +24,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
     int HEIGHT;
     public Image map_texture,bus_durak_texture,tram_durak_texture,startingLocation,finalLocation;
     int BaslangicX =-10, BaslangicY =-10, BitisX=-10, BitisY=-10;
-    JComboBox selectType, selectBuy, selectArac, selectPath, baslangicDurak, bitisDurak;
+    JComboBox<String> selectType, selectBuy, selectArac, selectPath, baslangicDurak, bitisDurak;
     JButton baslangicButton, bitisButton, calculateButton;
     boolean baslangicSeciliyor=false,bitisSeciliyor=false,calculated=false;
     double baslangic_lat=0, baslangic_lon=0, bitis_lat=0, bitis_lon=0;
@@ -56,7 +56,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             logger.log(Level.SEVERE, "Error loading texture", e);
         }
 
-        selectType = new JComboBox();
+        selectType = new JComboBox<>();
         selectType.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.Yolcular.size(); i++){selectType.addItem(Main.Yolcular.get(i).getClassName());}
         selectType.addActionListener(this);
@@ -64,7 +64,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         selectType.setBounds(20,164,160,23);
         this.add(selectType);
 
-        selectBuy = new JComboBox();
+        selectBuy = new JComboBox<>();
         selectBuy.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.OdemeYontemleri.size(); i++){selectBuy.addItem(Main.OdemeYontemleri.get(i).getClassName());}
         selectBuy.addActionListener(this);
@@ -72,7 +72,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         selectBuy.setBounds(20,227,160,23);
         this.add(selectBuy);
 
-        selectArac = new JComboBox();
+        selectArac = new JComboBox<>();
         selectArac.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.Araclar.size(); i++){selectArac.addItem(Main.Araclar.get(i).getName());}
         selectArac.addActionListener(this);
@@ -80,7 +80,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         selectArac.setBounds(20,104,160,23);
         this.add(selectArac);
 
-        baslangicDurak = new JComboBox();
+        baslangicDurak = new JComboBox<>();
         baslangicDurak.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){baslangicDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         baslangicDurak.setSelectedItem(null);
@@ -89,7 +89,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         baslangicDurak.setBounds(20,347,160,23);
         this.add(baslangicDurak);
 
-        bitisDurak = new JComboBox();
+        bitisDurak = new JComboBox<>();
         bitisDurak.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){bitisDurak.addItem(Main.anaVeri.getDuraklar().get(i).getName());}
         bitisDurak.setSelectedItem(null);
@@ -122,7 +122,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         calculateButton.setBackground(Color.YELLOW);
         this.add(calculateButton);
 
-        selectPath = new JComboBox();
+        selectPath = new JComboBox<>();
         selectPath.setFont(new Font("Consolas Bold",Font.PLAIN,15));
         selectPath.addActionListener(this);
         selectPath.setFocusable(false);
