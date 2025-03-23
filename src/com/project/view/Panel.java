@@ -167,15 +167,23 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         g2d.fill(arrowHead);
     }
 
+    public void drawDashedLine(Graphics g, int x1, int y1, int x2, int y2){
+        Graphics2D g2d = (Graphics2D) g.create();
+        Stroke dashed = new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+        g2d.setStroke(dashed);
+        drawLineWithArrow(g2d, x1, y1, x2, y2);
+        g2d.dispose();
+    }
+
     public void draw(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        g.drawImage(map_texture,0,0,this);
-        g.setFont(new Font("Copperplate Gothic Bold",Font.PLAIN,11));
-        g.setColor(Color.blue);
         //Set  anti-alias
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         // Set anti-alias for text
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g2d.drawImage(map_texture,0,0,this);
+        g2d.setFont(new Font("Copperplate Gothic Bold",Font.PLAIN,11));
+        g.setColor(Color.blue);
         if(!calculated){
             for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
                 g.setColor(Color.green);
@@ -184,25 +192,30 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
                 }
                 if(Main.anaVeri.getDuraklar().get(i).getTransfer()!=null){
                     g.setColor(Color.orange);
-                    drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLat()));
+                    drawDashedLine(g,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLat()));
+                    //drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getTransfer().getTransferStopId()).getLat()));
                 }
             }
         }else {
             if (!rotaInfo.isEmpty()) {
                 if(!rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().isEmpty()){
+                    g.setColor(Color.cyan);
                     if(rotaHesaplayici.getDistanceCalculator().calculateDistance(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLatitude(),rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLongitude(),Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(0)).getLat(),Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(0)).getLon()) > 3.0){g.setColor(Main.Araclar.get(selectArac.getSelectedIndex()).getColor());}
-                    else{g.setColor(Color.cyan);}
                     drawLineWithArrow(g2d, mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLatitude()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(0)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(0)).getLat()));
                     g.setColor(Color.green);
                     for (int i = 0; i < rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size() - 1; i++) {
-                        drawLineWithArrow(g2d, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLat()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLat()));
+                        if(!Objects.equals(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getType(), Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getType())){
+                            drawDashedLine(g, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLat()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLat()));
+                        }else{
+                            drawLineWithArrow(g2d, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLat()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLat()));
+                        }
                     }
+                    g.setColor(Color.cyan);
                     if(rotaHesaplayici.getDistanceCalculator().calculateDistance(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLatitude(),rotaInfo.get(selectPath.getSelectedIndex()).getBitisLongitude(),Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size()-1)).getLat(),Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size()-1)).getLon()) > 3.0){g.setColor(Main.Araclar.get(selectArac.getSelectedIndex()).getColor());}
-                    else{g.setColor(Color.cyan);}
                     drawLineWithArrow(g2d, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size() - 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size() - 1)).getLat()), mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLatitude()));
                 } else {
+                    g.setColor(Color.cyan);
                     if(rotaHesaplayici.getDistanceCalculator().calculateDistance(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLatitude(),rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLongitude(),rotaInfo.get(selectPath.getSelectedIndex()).getBitisLatitude(),rotaInfo.get(selectPath.getSelectedIndex()).getBitisLongitude()) > 3.0){g.setColor(Main.Araclar.get(selectArac.getSelectedIndex()).getColor());}
-                    else{g.setColor(Color.cyan);}
                     drawLineWithArrow(g2d, mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBaslangicLatitude()), mapToX(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLongitude()), mapToY(rotaInfo.get(selectPath.getSelectedIndex()).getBitisLatitude()));
                 }
             }

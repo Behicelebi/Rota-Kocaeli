@@ -15,6 +15,7 @@ public class Durak {
 
     public String getId() {return id;}
     public String getName() {return name;}
+    public String getType() {return type;}
     public double getLat() {return lat;}
     public double getLon() {return lon;}
     public boolean isSonDurak() {return sonDurak;}
