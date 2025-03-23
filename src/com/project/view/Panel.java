@@ -34,8 +34,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
 
     //SOLID PRENSIPLERINDEN AÇIK/KAPALI PRENSİBİNİN DOĞRU UYGULANMASI İÇİN BURASI ÖNEMLİ
 
-    DistanceCalculator haversineCalculator = new HaversineDistance();
-    RotaHesaplayici rotaHesaplayici = new RotaHesaplayici(haversineCalculator);
+    RotaHesaplayici rotaHesaplayici = new RotaHesaplayici(new HaversineDistance());
 
     Panel(int WIDTH, int HEIGHT){
         this.WIDTH = WIDTH;

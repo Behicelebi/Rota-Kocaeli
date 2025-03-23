@@ -5,14 +5,9 @@ import com.project.passenger.*;
 import com.project.payment.*;
 import com.project.transportation.*;
 import com.project.util.AutomaticClassAdder;
+import com.project.util.JsonReader;
 import com.project.view.*;
-import com.google.gson.Gson;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main {
     public static AnaVeri anaVeri;
@@ -20,30 +15,17 @@ public class Main {
     public static ArrayList<Yolcu> Yolcular = new ArrayList<>();
     public static ArrayList<Odeme> OdemeYontemleri = new ArrayList<>();
     public static ArrayList<TopluTasima> TopluTasimaYontemleri = new ArrayList<>();
-    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
-        // BU KISIMDAKİ SATIRLAR JSONDAN VERİNİN OKUNMASI İŞLEMİNİ YAPIYOR
+        // JSONUN OKUNMASI İÇİN GEREKLİ
 
-        String jsonContent;
-        try {
-            jsonContent = new String(Files.readAllBytes(Paths.get("veriseti.json")));
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "Error reading file: veriseti.json", e);
-            return;
-        }
-
-        Gson gson = new Gson();
-        anaVeri = gson.fromJson(jsonContent, AnaVeri.class);
-        for(Durak durak : anaVeri.getDuraklar()){
-            anaVeri.putDurakMap(durak);
-        }
+        new JsonReader();
 
         // CLASSLARIN OTOMATİK EKLENMESİ İÇİN GEREKLİ
 
         new AutomaticClassAdder();
 
-        // GÖRSELLEŞTİRME İÇİN GEREKLİ
+        // GÖRSELLEŞTİRME VE HESAPLAMALAR İÇİN GEREKLİ
 
         new Frame();
     }
@@ -66,4 +48,5 @@ public class Main {
     // com.project.util.DistanceCalculator interface i eklenerek Açık/Kapalı prensibine zıt durum düzeltildi.
     // com.project.main içerisinde tercihlerin otomatik alınması eklendi.
     // com.project.transportation içerisindeki classların otomatik alınması eklendi.
+    // com.project.viev.Panel 210 SOLID'e uygun değil.
 }
