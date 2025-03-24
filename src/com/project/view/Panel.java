@@ -205,8 +205,10 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
                     g.setColor(Color.green);
                     for (int i = 0; i < rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().size() - 1; i++) {
                         if(!Objects.equals(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getType(), Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getType())){
+                            g.setColor(Color.WHITE);
                             drawDashedLine(g, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLat()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLat()));
                         }else{
+                            g.setColor(Color.green);
                             drawLineWithArrow(g2d, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i)).getLat()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selectPath.getSelectedIndex()).getYolDuraklari().get(i + 1)).getLat()));
                         }
                     }
