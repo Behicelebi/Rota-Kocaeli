@@ -313,6 +313,9 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
                 rotaInfo = rotaHesaplayici.calculatePathDetails(baslangic_lat, baslangic_lon, bitis_lat, bitis_lon,
                         selectArac.getSelectedIndex(), selectType.getSelectedIndex(), selectBuy.getSelectedIndex());
                 selectPath.removeAllItems();
+                ucuzIndex = 0;
+                kisaIndex = 0;
+                hizliIndex = 0;
                 for (int i = 1; i < rotaInfo.size(); i++) {
                     if(rotaInfo.get(i).getYolUcreti() < rotaInfo.get(ucuzIndex).getYolUcreti()){ucuzIndex = i;}
                     if(rotaInfo.get(i).getYolUzunlugu() < rotaInfo.get(kisaIndex).getYolUzunlugu()){kisaIndex = i;}
