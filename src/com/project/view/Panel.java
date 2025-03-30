@@ -187,8 +187,7 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
         g.setColor(Color.blue);
         if(!calculated){
             for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
-                g.setColor(Color.green);
-                if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getType(), "tram")){g.setColor(Color.magenta);}
+                g.setColor(Main.anaVeri.getDuraklar().get(i).getVehicle().getLineColor());
                 for (int j = 0; j < Main.anaVeri.getDuraklar().get(i).getNextStops().size(); j++) {
                     drawLineWithArrow(g2d,mapToX(Main.anaVeri.getDuraklar().get(i).getLon()),mapToY(Main.anaVeri.getDuraklar().get(i).getLat()),mapToX(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId()).getLon()),mapToY(Main.anaVeri.getDurakMap().get(Main.anaVeri.getDuraklar().get(i).getNextStops().get(j).getStopId()).getLat()));
                 }
@@ -206,11 +205,10 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
                     g.setColor(Color.green);
                     for (int i = 0; i < rotaInfo.get(selected.getValue()).getYolDuraklari().size() - 1; i++) {
                         if(!Objects.equals(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i)).getType(), Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i + 1)).getType())){
-                            g.setColor(Color.magenta);
+                            g.setColor(Color.white);
                             drawDashedLine(g, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i)).getLat()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i + 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i + 1)).getLat()));
                         }else{
-                            g.setColor(Color.green);
-                            if(Objects.equals(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i)).getType(),"tram")){g.setColor(Color.WHITE);}
+                            g.setColor(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i)).getVehicle().getLineColor());
                             drawLineWithArrow(g2d, mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i)).getLat()), mapToX(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i + 1)).getLon()), mapToY(Main.anaVeri.getDurakMap().get(rotaInfo.get(selected.getValue()).getYolDuraklari().get(i + 1)).getLat()));
                         }
                     }
@@ -225,15 +223,8 @@ public class Panel extends JPanel implements ActionListener , MouseListener {
             }
         }
         for (int i = 0; i< Main.anaVeri.getDuraklar().size(); i++){
-            if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getVehicle().getType(), "bus")){
-                g2d.setColor(Color.red);
-                g2d.drawImage(bus_durak_texture,mapToX(Main.anaVeri.getDuraklar().get(i).getLon())-5,mapToY(Main.anaVeri.getDuraklar().get(i).getLat())-5,this);
-            }
-            else if(Objects.equals(Main.anaVeri.getDuraklar().get(i).getVehicle().getType(), "tram")){
-                g2d.setColor(Color.yellow);
-                g2d.drawImage(tram_durak_texture,mapToX(Main.anaVeri.getDuraklar().get(i).getLon())-5,mapToY(Main.anaVeri.getDuraklar().get(i).getLat())-5,this);
-            }
-
+            g2d.setColor(Main.anaVeri.getDuraklar().get(i).getVehicle().getIconColor());
+            g2d.drawImage(Main.anaVeri.getDuraklar().get(i).getVehicle().getDurakTexture(),mapToX(Main.anaVeri.getDuraklar().get(i).getLon())-5,mapToY(Main.anaVeri.getDuraklar().get(i).getLat())-5,this);
             g2d.drawString(Main.anaVeri.getDuraklar().get(i).getName(),mapToX(Main.anaVeri.getDuraklar().get(i).getLon()) - 40,mapToY(Main.anaVeri.getDuraklar().get(i).getLat()) + 20);
         }
         g2d.drawImage(startingLocation,BaslangicX-6,BaslangicY-6,this);

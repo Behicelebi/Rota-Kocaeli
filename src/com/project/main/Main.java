@@ -42,6 +42,7 @@ public class Main {
     // Yolların giderlerini bulma fonksiyonu (Süre, Yol, Maliyet) gibi gibi (YAPILDI)
     // Görselleştirme ile olası rotaların kullanıcıya sunulması. (YAPILDI)
     // rotaHesaplayici getter ile kullanılması. (YAPILDI)
+    // Görselleştirme için dinamik renklendirme eklenmesi. (YAPILDI)
     // Transfer verilerindeki transferMesafe kaldırılıp koordinatlar üzerinden hesaplama yapılması. (ŞÜPHELİ DEĞİL SORULDU)
 
     // Classlarda SOLID e uygun olmayan durumları belirle ve çöz (ALT AÇIKLAMALARIN HEPSİ BUNUNLA İLGİLİ)
