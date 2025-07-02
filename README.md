@@ -43,9 +43,10 @@ Katkılarda bulunmak için lütfen mevcut GitHub sorunlarını kontrol edin veya
 ## Lisans
 Apache-2.0 lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasını inceleyin.
 
-## İletişim
-Proje ile ilgili sorularınız için [muratemrebicici@gmail.com](mailto:muratemrebicici@gmail.com) veya [celebibehic@gmail.com](mailto:celebibehic@gmail.com) adresleriyle iletişime geçebilirsiniz.
-
+## ✉️ İletişim
+Murat Emre Biçici	muratemrebicici@gmail.com
+Behiç Çelebi		celebibehic@gmail.com
+Katkıda bulunmak için lütfen pull request gönderiniz.
 ## Kaynaklar
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 - [GSON](https://github.com/google/gson)
