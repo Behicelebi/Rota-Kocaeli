@@ -61,7 +61,7 @@ Proje ile ilgili sorularınız için [muratemrebicici@gmail.com](mailto:muratemr
   <td>demo4</td>
  </tr>
  <tr>
-  <td><img src="https://github.com/Behicelebi/Rota-Kocaeli/blob/main/screenshots/c1.jpg"></td>
+  <td><img src="https://raw.githubusercontent.com/Behicelebi/Rota-Kocaeli/refs/heads/master/screenshots/c1.jpg"></td>
   <td><img src="https://github.com/Behicelebi/Rota-Kocaeli/blob/main/screenshots/c2.jpg"></td>
   <td><img src="https://github.com/Behicelebi/Rota-Kocaeli/blob/main/screenshots/c3.jpg"></td>
   <td><img src="https://github.com/Behicelebi/Rota-Kocaeli/blob/main/screenshots/c4.png"></td>
