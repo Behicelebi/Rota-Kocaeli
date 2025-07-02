@@ -44,8 +44,10 @@ Maven:
 ## Katkıda Bulunma
 Katkılarda bulunmak için lütfen mevcut GitHub sorunlarını kontrol edin veya yeni bir sorun açarak önerinizi paylaşın. Proje, bakım modundadır; bu nedenle büyük yeni özellikler eklenmeden önce tartışma yapılması önerilir.
 
-## Lisans
-Apache-2.0 lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasını inceleyin.
+## <h2>📊 Deneysel Sonuçlar</h2>
+<p class="ds-markdown-paragraph"><strong>Girdi:</strong></p>
+<ul><li><p class="ds-markdown-paragraph">Başlangıç: 40.824400, 29.927708</p></li><li><p class="ds-markdown-paragraph">Bitiş: 40.758400, 29.943867</p></li></ul>
+<div class="markdown-table-wrapper"><table><thead><tr><th>Rota Tipi</th><th>Uzunluk</th><th>Süre</th><th>Ücret</th><th>Detaylar</th></tr></thead><tbody><tr><td><strong>En Ucuz</strong></td><td>19.38km</td><td>41.61dk</td><td>57.79TL</td><td>Yürü ➔ Otogar(Bus) ➔ SekaPark(Bus) ➔ 41 Burda AVM(Bus) ➔ Yürü</td></tr><tr><td><strong>En Hızlı</strong></td><td>18.66km</td><td>18.66dk</td><td>84.64TL</td><td>Direkt yürüme</td></tr><tr><td><strong>Alternatif 1</strong></td><td>23.68km</td><td>56.61dk</td><td>60.59TL</td><td>Çoklu aktarmalı rota</td></tr></tbody></table></div>
 
 ## ✉️ İletişim
 Murat Emre Biçici	muratemrebicici@gmail.com
