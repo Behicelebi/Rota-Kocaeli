@@ -13,6 +13,8 @@ Kocaeli Ulaşım Rota Planlama Sistemi, kullanıcıların mevcut konumlarından 
 ### Gereksinimler
 - Java 8 veya üzeri
 - Maven
+<h2>🌟 Temel Sınıflar</h2>
+<ul><li><p class="ds-markdown-paragraph"><strong><code>com.project.transportation</code></strong>: Araç yönetimi (Taksi, Scooter)</p></li><li><p class="ds-markdown-paragraph"><strong><code>com.project.passenger</code></strong>: Yolcu tipleri ve indirim yönetimi</p></li><li><p class="ds-markdown-paragraph"><strong><code>com.project.payment</code></strong>: Ödeme yöntemleri</p></li><li><p class="ds-markdown-paragraph"><strong><code>com.project.routing</code></strong>: Rota hesaplama algoritmaları</p></li><li><p class="ds-markdown-paragraph"><strong><code>com.project.util</code></strong>: Yardımcı fonksiyonlar ve sınır yönetimi</p></li></ul>
 
 ### Bağımlılıklar
 Gradle:
