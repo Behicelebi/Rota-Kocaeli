@@ -1,4 +1,4 @@
-# Proje: Kocaeli Ulaşım Rota Planlama Sistemi
+# Rota-Kocaeli: Kocaeli Ulaşım Rota Planlama Sistemi
 
 ## Açıklama
 Kocaeli Ulaşım Rota Planlama Sistemi, kullanıcıların mevcut konumlarından belirli bir hedef noktaya en uygun rotayı belirlemelerini sağlayan bir uygulamadır. Sistem, otobüs ve tramvay hatlarını entegre bir şekilde kullanarak, maliyet, süre ve mesafe gibi faktörlere göre optimize edilmiş güzergahlar sunar. Proje, Nesne Yönelimli Programlama (OOP) ve SOLID prensiplerine uygun olarak geliştirilmiştir.
