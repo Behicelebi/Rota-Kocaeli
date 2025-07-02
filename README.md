@@ -16,7 +16,7 @@ Kocaeli Ulaşım Rota Planlama Sistemi, kullanıcıların mevcut konumlarından 
 <h2>🌟 Temel Sınıflar</h2>
 <ul><li><p class="ds-markdown-paragraph"><strong><code>com.project.transportation</code></strong>: Araç yönetimi (Taksi, Scooter)</p></li><li><p class="ds-markdown-paragraph"><strong><code>com.project.passenger</code></strong>: Yolcu tipleri ve indirim yönetimi</p></li><li><p class="ds-markdown-paragraph"><strong><code>com.project.payment</code></strong>: Ödeme yöntemleri</p></li><li><p class="ds-markdown-paragraph"><strong><code>com.project.routing</code></strong>: Rota hesaplama algoritmaları</p></li><li><p class="ds-markdown-paragraph"><strong><code>com.project.util</code></strong>: Yardımcı fonksiyonlar ve sınır yönetimi</p></li></ul>
 
-<h2>✨ Temel Özellikler</h2>h2>
+<h2>✨ Temel Özellikler</h2>
 <ul><li><p class="ds-markdown-paragraph"><strong>Çok Kriterli Rota Optimizasyonu</strong> (En ucuz, en hızlı, en kısa)</p></li><li><p class="ds-markdown-paragraph"><strong>Entegre Ulaşım Ağı</strong> (Otobüs, tramvay, taksi, scooter)</p></li><li><p class="ds-markdown-paragraph"><strong>Akıllı Aktarma Yönetimi</strong></p></li><li><p class="ds-markdown-paragraph"><strong>Kişiselleştirilmiş İndirimler</strong> (Öğrenci, öğretmen, 65+)</p></li><li><p class="ds-markdown-paragraph"><strong>Çoklu Ödeme Seçenekleri</strong> (Nakit, kredi kartı, Kentkart)</p></li><li><p class="ds-markdown-paragraph"><strong>Mesafe Tabanlı Araç Yönlendirme</strong> (3km eşik değeri)</p></li><li><p class="ds-markdown-paragraph"><strong>Kullanıcı Dostu Arayüz</strong> (Harita entegrasyonlu)</p></li></ul>
 ### Bağımlılıklar
 Gradle:
