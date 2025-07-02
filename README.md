@@ -51,6 +51,22 @@ Proje ile ilgili sorularınız için [muratemrebicici@gmail.com](mailto:muratemr
 - [GSON](https://github.com/google/gson)
 - [ClassGraph](https://github.com/classgraph/classgraph)
 
+
+## Screenshots
+<table>
+ <tr>
+  <td>demo1</td>
+  <td>demo2</td>
+  <td>demo3</td>
+  <td>demo4</td>
+ </tr>
+ <tr>
+  <td><img src="https://github.com/Behicelebi/Rota-Kocaeli/blob/main/screenshots/c1.jpg"></td>
+  <td><img src="https://github.com/Behicelebi/Rota-Kocaeli/blob/main/screenshots/c2.jpg"></td>
+  <td><img src="https://github.com/Behicelebi/Rota-Kocaeli/blob/main/screenshots/c3.jpg"></td>
+  <td><img src="https://github.com/Behicelebi/Rota-Kocaeli/blob/main/screenshots/c4.png"></td>
+ </tr>
+</table>
 ---
 
 Bu proje, ulaşım sistemlerinin nasıl daha verimli ve kullanıcı dostu hale getirilebileceğini göstermektedir. Gelecekte, farklı şehirlerde ve daha büyük ölçekli ulaşım ağlarında kullanılabilir.
